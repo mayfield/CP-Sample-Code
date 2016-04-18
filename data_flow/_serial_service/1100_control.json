@@ -1,0 +1,219 @@
+{
+    "button": {
+        "factory_reset": false
+    },
+    "certmgmt": {
+        "ca": {},
+        "csr": {}
+    },
+    "csterm": {},
+    "dnsmonitor": {},
+    "ecm": {
+        "cert": null,
+        "enable_legacy": false,
+        "register": {
+            "password": null,
+            "token_id": null,
+            "token_secret": null,
+            "username": null
+        },
+        "reset_timers": null,
+        "restart": null,
+        "start": true,
+        "stop": true
+    },
+    "firewall": {
+        "conntrack": {
+            "flush": false
+        }
+    },
+    "gpio": {
+        "CGPIO_CONNECTOR_INPUT": 1,
+        "CGPIO_CONNECTOR_OUTPUT": 1,
+        "CGPIO_SERIAL_INPUT_1": 0,
+        "CGPIO_SERIAL_INPUT_2": 0,
+        "CGPIO_SERIAL_INPUT_3": 0,
+        "DUAL_SIM": 0,
+        "GPIO_RESET_BUTTON": 1,
+        "LED_LAN2_Y": 1,
+        "LED_LAN_Y": 1,
+        "LED_POWER": 0,
+        "LED_SS_0": 1,
+        "LED_SS_1": 1,
+        "LED_SS_2": 1,
+        "LED_SS_3": 1,
+        "LED_USB": 1,
+        "LED_USB1": 1,
+        "LED_USB1_RED": 1,
+        "LED_USB_RED": 1,
+        "LED_WAN_Y": 1,
+        "LED_WIFI": 0,
+        "LED_WIFI_BLUE": 1,
+        "POWER_EN_INT": 1,
+        "POWER_EN_USB": 1,
+        "POWER_OFF_LATCH": 0,
+        "POWER_OFF_TOGGLE": 0,
+        "SERIAL_OUTPUT_11": 0,
+        "SERIAL_OUTPUT_12": 0,
+        "SERIAL_OUTPUT_14": 0,
+        "SERIAL_OUTPUT_7": 0,
+        "SERIAL_OUTPUT_8": 0,
+        "THERMAL_IC": 0,
+        "UART_DCD": 0,
+        "UART_DEBUG_VS_GPS": 0,
+        "UART_RI": 0,
+        "USB_POWER_FAIL": 1,
+        "USB_SWITCH_CONTROL": 1,
+        "WDT_OUTPUT": 0
+    },
+    "gps": {
+        "nmea_log_as_input": "",
+        "start": 0,
+        "stop": 0
+    },
+    "gre_netmanager": {
+        "reset_stats": null
+    },
+    "hotspot": {
+        "clearList": true,
+        "loadprofile": {},
+        "revoke": {}
+    },
+    "lan": {
+        "devices": {
+            "ethernet-lan": {
+                "reset_stats": null
+            }
+        },
+        "quick_ip_pass": false,
+        "reset_stats": null
+    },
+    "led": {
+        "reset_leds": null
+    },
+    "log": {
+        "clear": false
+    },
+    "ob_upgrade": {
+        "check": null,
+        "delay": 60,
+        "fw_update": {
+            "factory_reset": false
+        },
+        "mdm_check_delay": 300,
+        "reboot": false
+    },
+    "openvpn_netmanager": {
+        "reset_stats": null
+    },
+    "ping": {
+        "result": "",
+        "start": "",
+        "status": ""
+    },
+    "qos": {
+        "override": false
+    },
+    "routing": {
+        "static": {
+            "refresh": false
+        }
+    },
+    "signal_strength_leds": "enabled",
+    "system": {
+        "clock": {
+            "set_dst": true,
+            "set_time": 1457614457,
+            "set_zone": "+6"
+        },
+        "factory_reset": null,
+        "localtime": "1970-01-01 00:01:11",
+        "power_off": false,
+        "reboot": null,
+        "sdk": {
+            "action": ""
+        },
+        "techsupport_access": false
+    },
+    "testmode": {
+        "atmodemtest": false
+    },
+    "traceroute": {
+        "result": [],
+        "start": "",
+        "status": "not started",
+        "stop": ""
+    },
+    "vpn": {
+        "dead": [],
+        "down": [],
+        "failback": [],
+        "restart": true,
+        "status": "Stopped",
+        "tunnel": {},
+        "up": []
+    },
+    "vti_netmanager": {
+        "reset_stats": null
+    },
+    "wan": {
+        "devices": {
+            "ethernet-wan": {
+                "fw_upgrade": null,
+                "manual_activate_connect": null,
+                "manual_activate_done": null,
+                "manual_activate_finalize": null,
+                "manual_activate_started": null,
+                "reset": null,
+                "reset_stats": null
+            },
+            "mdm-1f0e98e7": {
+                "activity": null,
+                "factory_defaults_finalize": null,
+                "fw_upgrade": null,
+                "manual_activate_connect": null,
+                "manual_activate_done": null,
+                "manual_activate_finalize": null,
+                "manual_activate_started": null,
+                "puk_unlock": null,
+                "reset": null,
+                "reset_stats": null,
+                "testmode": {
+                    "ready": true,
+                    "reset": false
+                }
+            },
+            "mdm-1f3c6020": {
+                "activity": null,
+                "factory_defaults_finalize": null,
+                "fw_upgrade": null,
+                "manual_activate_connect": null,
+                "manual_activate_done": null,
+                "manual_activate_finalize": null,
+                "manual_activate_started": null,
+                "puk_unlock": null,
+                "reset": null,
+                "reset_stats": null,
+                "testmode": {
+                    "ready": true,
+                    "reset": false
+                }
+            }
+        },
+        "powersave": null,
+        "reset_stats": null
+    },
+    "webfilter": {
+        "debug": 0
+    },
+    "wlan": {
+        "block_macs": [],
+        "kick_mac": null,
+        "standby": false,
+        "switch_enabled": true,
+        "wps": {
+            "button": false,
+            "pin": false
+        }
+    }
+}

@@ -1,0 +1,1685 @@
+{
+	"dhcpd": {
+		"set_system_id": false
+	},
+	"identities": {
+		"mac": [],
+		"ip": [],
+		"port": []
+	},
+	"webfilter": {
+		"filterlist": [],
+		"opendns": {
+			"use_aux_port": false,
+			"enabled": false
+		},
+		"zsis": {
+			"failure_mode": "allow",
+			"mode": "dyndns",
+			"dyndns": {
+				"dnsservers": [{
+					"priority": 10,
+					"ip_address": "8.34.34.34"
+				},
+				{
+					"priority": 20,
+					"ip_address": "8.35.35.35"
+				}],
+				"server": "ddns.zscalershift.net"
+			},
+			"tls_tlv": {
+				"policy_tags": [],
+				"cert_uuid": "00000002-4030-4315-ae27-a8818a30c9fb",
+				"remote_gateway": "8.34.34.34",
+				"port": 443
+			}
+		},
+		"cloudservice": "disabled",
+		"zscaler": {
+			
+		},
+		"logaccess": false,
+		"proxy": {
+			"filtering_enabled": true,
+			"http_port": 8080,
+			"https_filtering": false,
+			"enabled": false
+		},
+		"defaultmacaction": [],
+		"macfilterlist": []
+	},
+	"nemo": {
+		"networks": [],
+		"timeout": 5,
+		"enabled": false,
+		"retry_capdelay": 30,
+		"retry_limit": 6,
+		"retry_repeat": 300,
+		"reregister": 30,
+		"life": 65535,
+		"port": 434
+	},
+	"system": {
+		"connector_gpio": {
+			"output": 0,
+			"timeout": 300,
+			"input": 1
+		},
+		"snmp": {
+			"snmp_on_wan": false,
+			"password": "$1$1898aeaf$nGjQtE0HHzXMqPtKazPzCg==",
+			"sys_name": "Test",
+			"wan_port": 161,
+			"fw_upgrade_redirect": "",
+			"sys_location": "\u0e20\u0e32\u0e29\u0e32\u0e1e\u0e39\u0e14",
+			"user": "",
+			"persisted_config": " ",
+			"snmp_version": "SNMPv1",
+			"sys_contact": "Lynn Linse",
+			"set_community": "public",
+			"snmp_on_lan": true,
+			"lan_port": 161,
+			"auth_mode": "MD5",
+			"persist_needed": false,
+			"enabled": true,
+			"traps_enabled": false,
+			"get_community": "public",
+			"trap_port": 162,
+			"trap_address": ""
+		},
+		"system_id": "IBR1100-702",
+		"asset_id": "LLinse_IBR",
+		"admin": {
+			"secure_port": 443,
+			"disable_signal_strength_button": false,
+			"secure_only": false,
+			"fw_update_check": false,
+			"inactivity": 900,
+			"http_update_check": false,
+			"bouncepages": true,
+			"product_name": "IBR1100LPE",
+			"upgrade_url": "http://www.cradlepoint.com/files/uploads/IBR1100/firmware-ibr1100.json",
+			"mdm_fw_update_check": true,
+			"reboot_count": {
+				"enabled": false
+			},
+			"enable_login_banner": false
+		},
+		"email": {
+			"smtp_server": "smtp.gmail.com",
+			"smtp_port": 587,
+			"enable_authentication": true,
+			"enabled": false
+		},
+		"users": [{
+			"username": "admin",
+			"password": "$1$3073a0bc$ZGyVRnm8HhnZAvJ8jmVx/w==",
+			"group": "admin"
+		}],
+		"mac_monitor": {
+			"allowed_macs": [],
+			"enabled": false
+		},
+		"sms": {
+			"whitelist": [],
+			"enabled": true,
+			"password": "$1$540e319f$3sU//LEhZsNnA9i452l4Rg=="
+		},
+		"sensors": {
+			"alerts": {
+				"max": 70,
+				"min": 10
+			}
+		},
+		"ntp": {
+			"enabled": true,
+			"poll_interval": 86400,
+			"port": 123,
+			"server": "pool.ntp.org"
+		},
+		"gps": {
+			"enabled": true,
+			"taip_vehicle_id": "0000",
+			"enable_gps_led": false,
+			"connections": [],
+			"pwd_enabled": false
+		},
+		"logging": {
+			"firewall": false,
+			"console": false,
+			"enabled": true,
+			"max_logs": 1000,
+			"remoteLogging": {
+				"system_id": false,
+				"enabled": true,
+				"serverAddr": "192.168.1.20",
+				"utf8_bom": true
+			},
+			"services": [],
+			"modem_debug": {
+				"lvl_warn": false,
+				"lvl_trace": false,
+				"lvl_error": false,
+				"lvl_info": false
+			},
+			"level": "debug"
+		},
+		"minimum_tls_version": "tlsv1.2",
+		"first_boot": true,
+		"timezone": "+6",
+		"ui_activated": true,
+		"adv_auth": {
+			"lockout_time": 30,
+			"tacacs": {
+				"secret": "$1$1898aeaf$nGjQtE0HHzXMqPtKazPzCg==",
+				"secret2": "$1$1898aeaf$nGjQtE0HHzXMqPtKazPzCg==",
+				"timeout": 3,
+				"port2": 49,
+				"authService": "login",
+				"port": 49
+			},
+			"mode": "local",
+			"radius": {
+				"secret2": "$1$1898aeaf$nGjQtE0HHzXMqPtKazPzCg==",
+				"secret": "$1$1898aeaf$nGjQtE0HHzXMqPtKazPzCg==",
+				"timeout": 3,
+				"port2": 1812,
+				"port": 1812
+			},
+			"lockout_attempts": 6,
+			"ban_ip": false
+		},
+		"dyndns": {
+			"settings": {
+				"use_https": true,
+				"enabled": false,
+				"update_period": 576,
+				"server": "members.dyndns.org"
+			}
+		},
+		"disable_leds": false,
+		"wifi_exists": true,
+		"watchdog": {
+			"enabled": true
+		},
+		"local_domain": "local.tld",
+		"at_passthrough_proxy": {
+			"enabled": false
+		},
+		"gpio_actions": {
+			"serial_gpio_enable": true,
+			"pin": [{
+				"direction": "out",
+				"current_action": "out_action_high",
+				"enabled": true,
+				"pin": 61
+			},
+			{
+				"direction": "in",
+				"current_action": "in_action_sensing",
+				"enabled": false,
+				"pin": 66
+			},
+			{
+				"low_state_name": "low",
+				"direction": "in",
+				"alert_state": "both",
+				"enabled": true,
+				"gpio_name": "CTS",
+				"current_action": "in_action_sensing",
+				"pin": 9,
+				"high_state_name": "high"
+			},
+			{
+				"direction": "in",
+				"current_action": "in_action_sensing",
+				"enabled": true,
+				"gpio_name": "RXD",
+				"pin": 10
+			},
+			{
+				"direction": "in",
+				"current_action": "in_action_sensing",
+				"enabled": true,
+				"gpio_name": "DSR",
+				"pin": 13
+			}]
+		},
+		"reboot_schedule": {
+			"frequency": "never",
+			"day_of_week": 0,
+			"day_of_month": 1,
+			"time": "12:00 AM"
+		},
+		"dst_enabled": true,
+		"serial": {
+			"status": "Disabled",
+			"serial_port": "ttyS1",
+			"stop_bits": 0,
+			"byte_size": 8,
+			"server": {
+				"lan": false,
+				"lan_admin": false,
+				"wan": true,
+				"port": 7218
+			},
+			"byte_parity": 0,
+			"baud_rate": 9600,
+			"linefeed": 0,
+			"flow_control": {
+				"software": false,
+				"hardware": false
+			},
+			"enabled": false
+		},
+		"internal_svcs": {
+			"use_route": false
+		},
+		"qxdmproxy": {
+			"enabled": false
+		},
+		"utc_format": false,
+		"upnp": {
+			"igd_enabled": true,
+			"port": 3333,
+			"wfa_enabled": false
+		},
+		"desc": "Lynn's Test \u0e20\u0e32\u0e29\u0e32\u0e1e\u0e39\u0e14",
+		"pci_dss": false
+	},
+	"ecm": {
+		"config_version": 4,
+		"enabled": true,
+		"max_alert_queue": 20,
+		"server_port": 8001,
+		"server_host": "qa3.cradlepointecm.com",
+		"unmanaged_retry_seed": 86400,
+		"session_retry_seed": 60
+	},
+	"hotspot": {
+		"allowed_macs": [],
+		"disallow_failover": false,
+		"redir_https": false,
+		"uam": {
+			"splash_url": "",
+			"secret": "$1$1898aeaf$nGjQtE0HHzXMqPtKazPzCg==",
+			"heartbeat": {
+				"interval": 60,
+				"enabled": false
+			},
+			"url": "",
+			"port": 8000,
+			"nasid": ""
+		},
+		"failover_datarate_time": 90,
+		"tos": {
+			"idle_timeout": 15,
+			"bw_down": 1024,
+			"tostype": "inttos",
+			"session_timeout": 60,
+			"text": "",
+			"redirect_url": "",
+			"redirtype": "userredir",
+			"bw_up": 512
+		},
+		"mode": "simple",
+		"profiles": [{
+			"idle_timeout": 15,
+			"HBurl": "https://tech.hotspotsystem.com/up.php",
+			"disallow_failover": false,
+			"UAMurl": "https://customer.hotspotsystem.com/customer/hotspotlogin.php?mode=comb",
+			"server": "radius.hotspotsystem.com",
+			"session_timeout": 60,
+			"bw_down": 1024,
+			"allow_modem": true,
+			"radiusSecret": "$1$82936dd2$ptaPvZvv4Ewz3Q7NGEuPWA==",
+			"redirect": "uam",
+			"name": "HotspotSystem.com",
+			"UAMport": 3990,
+			"HBenabled": true,
+			"failover_datarate_time": 90,
+			"bw_up": 512,
+			"failover_datarate_rate": 20,
+			"redir_https": false,
+			"HBinterval": 60,
+			"UAMsecret": "$1$82936dd2$ptaPvZvv4Ewz3Q7NGEuPWA==",
+			"acctPort": 1813,
+			"allowed_sites": [{
+				"address": "*.hotspotsystem.com"
+			},
+			{
+				"address": "*.worldpay.com"
+			},
+			{
+				"address": "*.paypal.com"
+			},
+			{
+				"address": "*.paypalobjects.com"
+			},
+			{
+				"address": "paypal.112.2O7.net"
+			},
+			{
+				"address": "*.paypal-metrics.com"
+			},
+			{
+				"address": "altfarm.mediaplex.com"
+			},
+			{
+				"address": "*.adyen.com"
+			},
+			{
+				"address": "*.paysafecard.com"
+			},
+			{
+				"address": "a1.hotspotsystem.com"
+			},
+			{
+				"address": "a2.hotspotsystem.com"
+			},
+			{
+				"address": "a3.hotspotsystem.com"
+			},
+			{
+				"address": "a4.hotspotsystem.com"
+			},
+			{
+				"address": "a5.hotspotsystem.com"
+			},
+			{
+				"address": "a6.hotspotsystem.com"
+			},
+			{
+				"address": "a7.hotspotsystem.com"
+			},
+			{
+				"address": "a8.hotspotsystem.com"
+			},
+			{
+				"address": "a9.hotspotsystem.com"
+			},
+			{
+				"address": "a10.hotspotsystem.com"
+			},
+			{
+				"address": "a11.hotspotsystem.com"
+			},
+			{
+				"address": "a12.hotspotsystem.com"
+			},
+			{
+				"address": "a13.hotspotsystem.com"
+			},
+			{
+				"address": "a14.hotspotsystem.com"
+			},
+			{
+				"address": "a15.hotspotsystem.com"
+			},
+			{
+				"address": "a16.hotspotsystem.com"
+			},
+			{
+				"address": "a17.hotspotsystem.com"
+			},
+			{
+				"address": "a18.hotspotsystem.com"
+			},
+			{
+				"address": "a19.hotspotsystem.com"
+			},
+			{
+				"address": "a20.hotspotsystem.com"
+			},
+			{
+				"address": "a21.hotspotsystem.com"
+			},
+			{
+				"address": "a22.hotspotsystem.com"
+			},
+			{
+				"address": "a23.hotspotsystem.com"
+			},
+			{
+				"address": "a24.hotspotsystem.com"
+			},
+			{
+				"address": "a25.hotspotsystem.com"
+			},
+			{
+				"address": "a26.hotspotsystem.com"
+			},
+			{
+				"address": "a27.hotspotsystem.com"
+			},
+			{
+				"address": "a28.hotspotsystem.com"
+			},
+			{
+				"address": "a29.hotspotsystem.com"
+			},
+			{
+				"address": "a30.hotspotsystem.com"
+			}],
+			"authPort": 1812,
+			"server_2": "radius2.hotspotsystem.com"
+		},
+		{
+			"idle_timeout": 15,
+			"HBurl": "https://www.wifi-soft.com/cradlepoint/heartbeat/default",
+			"disallow_failover": false,
+			"UAMurl": "http://cp.wifi-soft.com/login",
+			"server": "173.224.125.185",
+			"session_timeout": 240,
+			"bw_down": 1500,
+			"allow_modem": false,
+			"radiusSecret": "$1$726b9471$WXyLLldx8jWcAvClvvHP3Q==",
+			"redirect": "uam",
+			"name": "WifiSoft",
+			"UAMport": 8080,
+			"HBenabled": true,
+			"failover_datarate_time": 90,
+			"bw_up": 165,
+			"failover_datarate_rate": 20,
+			"redir_https": false,
+			"HBinterval": 15,
+			"UAMsecret": "$1$1898aeaf$nGjQtE0HHzXMqPtKazPzCg==",
+			"acctPort": 1813,
+			"allowed_sites": [{
+				"address": "www.wifi-soft.com"
+			},
+			{
+				"address": "wpad.prowifi.net"
+			},
+			{
+				"address": "www.paypal.com"
+			},
+			{
+				"address": "www.paypal.com.akadns.net"
+			},
+			{
+				"address": "ocsp.comodoca.com"
+			},
+			{
+				"address": "www.paypalobjects.com"
+			},
+			{
+				"address": "paypal.112.2o7.net"
+			},
+			{
+				"address": "www.wifi-soft.net"
+			},
+			{
+				"address": "mobile.paypal.com"
+			},
+			{
+				"address": "altfarm.mediaplex.com"
+			},
+			{
+				"address": "sstats.paypal-metrics.com"
+			},
+			{
+				"address": "b.stats.paypal.com"
+			},
+			{
+				"address": "mp.apmebf.com"
+			}],
+			"authPort": 1812,
+			"server_2": "74.208.78.152"
+		}],
+		"radius": {
+			"secret": "$1$1898aeaf$nGjQtE0HHzXMqPtKazPzCg==",
+			"bw_down": 1024,
+			"timeout": 5,
+			"idle_timeout": 15,
+			"retries": 3,
+			"redirect": "uam",
+			"session_timeout": 60,
+			"redirect_url": "",
+			"acctPort": 1813,
+			"bw_up": 512,
+			"authPort": 1812
+		},
+		"allow_modem": false,
+		"allowed_sites": [],
+		"failover_datarate_rate": 20
+	},
+	"security": {
+		"zfw": {
+			"zones": [{
+				"_id_": "00000000-695c-3d87-95cb-d0ee2029d0b5",
+				"name": "All",
+				"devices": []
+			},
+			{
+				"_id_": "00000001-695c-3d87-95cb-d0ee2029d0b5",
+				"name": "Router",
+				"devices": []
+			},
+			{
+				"_id_": "00000002-695c-3d87-95cb-d0ee2029d0b5",
+				"name": "WAN Zone",
+				"devices": [{
+					"trigger_field": "type",
+					"trigger_neg": false,
+					"trigger_group": "wan",
+					"trigger_predicate": "is",
+					"trigger_value": ""
+				}]
+			},
+			{
+				"_id_": "00000003-695c-3d87-95cb-d0ee2029d0b5",
+				"name": "Primary LAN Zone",
+				"devices": [{
+					"trigger_field": "config_id",
+					"trigger_neg": false,
+					"trigger_group": "lan",
+					"trigger_predicate": "is",
+					"trigger_value": "00000000-0d93-319d-8220-4a1fb0372b51"
+				}]
+			},
+			{
+				"_id_": "00000004-695c-3d87-95cb-d0ee2029d0b5",
+				"name": "Guest LAN Zone",
+				"devices": [{
+					"trigger_field": "config_id",
+					"trigger_neg": false,
+					"trigger_group": "lan",
+					"trigger_predicate": "is",
+					"trigger_value": "00000001-0d93-319d-8220-4a1fb0372b51"
+				}]
+			}],
+			"filter_policies": [{
+				"_id_": "00000000-77db-3b20-980e-2de482869073",
+				"rules": [],
+				"default_action": "allow",
+				"name": "Default Allow All"
+			},
+			{
+				"_id_": "00000001-77db-3b20-980e-2de482869073",
+				"rules": [],
+				"default_action": "deny",
+				"name": "Default Deny All"
+			}],
+			"forwardings": [{
+				"_id_": "00000000-9532-3d3e-968c-e2f54a0cad18",
+				"dst_zone_id": "00000003-695c-3d87-95cb-d0ee2029d0b5",
+				"enabled": true,
+				"src_zone_id": "00000002-695c-3d87-95cb-d0ee2029d0b5",
+				"filter_policy_id": "00000001-77db-3b20-980e-2de482869073"
+			},
+			{
+				"_id_": "00000001-9532-3d3e-968c-e2f54a0cad18",
+				"dst_zone_id": "00000002-695c-3d87-95cb-d0ee2029d0b5",
+				"enabled": true,
+				"src_zone_id": "00000003-695c-3d87-95cb-d0ee2029d0b5",
+				"filter_policy_id": "00000000-77db-3b20-980e-2de482869073"
+			},
+			{
+				"_id_": "00000002-9532-3d3e-968c-e2f54a0cad18",
+				"dst_zone_id": "00000004-695c-3d87-95cb-d0ee2029d0b5",
+				"enabled": true,
+				"src_zone_id": "00000002-695c-3d87-95cb-d0ee2029d0b5",
+				"filter_policy_id": "00000001-77db-3b20-980e-2de482869073"
+			},
+			{
+				"_id_": "00000003-9532-3d3e-968c-e2f54a0cad18",
+				"dst_zone_id": "00000002-695c-3d87-95cb-d0ee2029d0b5",
+				"enabled": true,
+				"src_zone_id": "00000004-695c-3d87-95cb-d0ee2029d0b5",
+				"filter_policy_id": "00000000-77db-3b20-980e-2de482869073"
+			}]
+		}
+	},
+	"gre": {
+		"tunnels": []
+	},
+	"wan": {
+		"loadbalance": {
+			"algo": "spillover"
+		},
+		"rules_migrated_to_rules2": true,
+		"rules2": [{
+			"failureCheck6": {
+				"idle_seconds": 30,
+				"mode": "off"
+			},
+			"modem": {
+				"ip_src_wan_subnet_filter": true,
+				"net_sel_mode": "auto",
+				"aggressive_reset": true,
+				"lock_net_sos_rssi": -99,
+				"connect_mode": "auto",
+				"aux_antenna_enable": true,
+				"apn_mode": "default",
+				"functional_mode": "ipt",
+				"ehrpd_enable": true
+			},
+			"ondemand": false,
+			"ip_mode": "dhcp",
+			"bandwidth_ingress": 40000,
+			"_id_": "00000000-a81d-3590-93ca-8b1fcfeb8e14",
+			"ondemand_idle_minutes": 5,
+			"failureCheck": {
+				"idle_seconds": 30,
+				"mode": "off"
+			},
+			"priority": 1,
+			"disabled": false,
+			"loadbalance": false,
+			"bandwidth_egress": 40000,
+			"trigger_string": "type|is|ethernet",
+			"ondemand_start_connected": true,
+			"trigger_name": "Ethernet",
+			"failback": {
+				"immediate": false,
+				"time": 90,
+				"rate_time": 90,
+				"mode": "rate",
+				"rate_bandwidth": 20
+			}
+		},
+		{
+			"failureCheck6": {
+				"idle_seconds": 30,
+				"mode": "off"
+			},
+			"modem": {
+				"ip_src_wan_subnet_filter": true,
+				"net_sel_mode": "auto",
+				"aggressive_reset": true,
+				"lock_net_sos_rssi": -99,
+				"connect_mode": "auto",
+				"aux_antenna_enable": true,
+				"apn_mode": "default",
+				"functional_mode": "ipt",
+				"ehrpd_enable": true
+			},
+			"ondemand": false,
+			"ondemand_start_connected": true,
+			"bandwidth_ingress": 10000,
+			"_id_": "00000001-a81d-3590-93ca-8b1fcfeb8e14",
+			"ondemand_idle_minutes": 5,
+			"failureCheck": {
+				"idle_seconds": 30,
+				"mode": "off"
+			},
+			"priority": 4,
+			"disabled": false,
+			"loadbalance": false,
+			"bandwidth_egress": 10000,
+			"trigger_string": "type|is|wwan",
+			"trigger_name": "WiFi as WAN",
+			"failback": {
+				"immediate": false,
+				"time": 90,
+				"rate_time": 90,
+				"mode": "rate",
+				"rate_bandwidth": 20
+			}
+		},
+		{
+			"failureCheck6": {
+				"idle_seconds": 30,
+				"mode": "off"
+			},
+			"modem": {
+				"ip_src_wan_subnet_filter": true,
+				"net_sel_mode": "auto",
+				"aggressive_reset": true,
+				"lock_net_sos_rssi": -99,
+				"connect_mode": "auto",
+				"aux_antenna_enable": true,
+				"apn_mode": "default",
+				"functional_mode": "ipt",
+				"ehrpd_enable": true
+			},
+			"ondemand": false,
+			"ondemand_start_connected": true,
+			"bandwidth_ingress": 25000,
+			"_id_": "00000002-a81d-3590-93ca-8b1fcfeb8e14",
+			"ondemand_idle_minutes": 5,
+			"failureCheck": {
+				"idle_seconds": 30,
+				"mode": "off"
+			},
+			"priority": 2,
+			"disabled": false,
+			"loadbalance": false,
+			"bandwidth_egress": 25000,
+			"trigger_string": "type|is|mdm%tech|is|lte",
+			"trigger_name": "LTE-only Modems",
+			"failback": {
+				"immediate": false,
+				"time": 90,
+				"rate_time": 90,
+				"mode": "rate",
+				"rate_bandwidth": 20
+			}
+		},
+		{
+			"failureCheck6": {
+				"idle_seconds": 30,
+				"mode": "off"
+			},
+			"modem": {
+				"ip_src_wan_subnet_filter": true,
+				"net_sel_mode": "auto",
+				"aggressive_reset": true,
+				"lock_net_sos_rssi": -99,
+				"connect_mode": "auto",
+				"aux_antenna_enable": true,
+				"apn_mode": "default",
+				"functional_mode": "ipt",
+				"ehrpd_enable": true
+			},
+			"ondemand": false,
+			"ondemand_start_connected": true,
+			"bandwidth_ingress": 25000,
+			"_id_": "00000003-a81d-3590-93ca-8b1fcfeb8e14",
+			"ondemand_idle_minutes": 5,
+			"failureCheck": {
+				"idle_seconds": 30,
+				"mode": "off"
+			},
+			"priority": 2.5,
+			"disabled": false,
+			"loadbalance": false,
+			"bandwidth_egress": 25000,
+			"trigger_string": "type|is|mdm%tech|is|lte/3g",
+			"trigger_name": "LTE/3G Multi-mode Modems",
+			"failback": {
+				"immediate": false,
+				"time": 90,
+				"rate_time": 90,
+				"mode": "rate",
+				"rate_bandwidth": 20
+			}
+		},
+		{
+			"failureCheck6": {
+				"idle_seconds": 30,
+				"mode": "off"
+			},
+			"modem": {
+				"ip_src_wan_subnet_filter": true,
+				"net_sel_mode": "auto",
+				"aggressive_reset": true,
+				"lock_net_sos_rssi": -99,
+				"connect_mode": "auto",
+				"aux_antenna_enable": true,
+				"apn_mode": "default",
+				"functional_mode": "ipt",
+				"ehrpd_enable": true
+			},
+			"ondemand": false,
+			"ondemand_start_connected": true,
+			"bandwidth_ingress": 1300,
+			"_id_": "00000004-a81d-3590-93ca-8b1fcfeb8e14",
+			"ondemand_idle_minutes": 5,
+			"failureCheck": {
+				"idle_seconds": 30,
+				"mode": "off"
+			},
+			"priority": 5,
+			"disabled": false,
+			"loadbalance": false,
+			"bandwidth_egress": 1300,
+			"trigger_string": "type|is|mdm%tech|is|3g",
+			"trigger_name": "3G-only Modems",
+			"failback": {
+				"immediate": false,
+				"time": 90,
+				"rate_time": 90,
+				"mode": "rate",
+				"rate_bandwidth": 20
+			}
+		},
+		{
+			"modem": {
+				"ppp_password": "$1$3073a0bc$ZGyVRnm8HhnZAvJ8jmVx/w==",
+				"manual_apn": "broadband",
+				"profiles": [{
+					"profile": 3,
+					"type": "ip",
+					"apn": "0011826"
+				},
+				{
+					"profile": 2,
+					"type": "ip",
+					"apn": "11826.mcs"
+				},
+				{
+					"profile": 1,
+					"type": "ip",
+					"apn": "Broadband"
+				}],
+				"apn_mode": "select",
+				"selected_profile": 1
+			},
+			"trigger_string": "type|is|mdm%tech|is|lte/3g%uid|is|1f0e98e7",
+			"_id_": "00000005-a81d-3590-93ca-8b1fcfeb8e14",
+			"trigger_name": "Modem-1f0e98e7",
+			"router_modified": true,
+			"priority": 2.00010666
+		},
+		{
+			"trigger_string": "type|is|mdm%tech|is|lte/3g%uid|is|1f3c6020",
+			"_id_": "00000006-a81d-3590-93ca-8b1fcfeb8e14",
+			"trigger_name": "Modem-1f3c6020",
+			"priority": 2.125133325,
+			"disabled": true,
+			"router_modified": true
+		}],
+		"datacap": {
+			"agreement": false,
+			"enabled": false
+		},
+		"dual_sim_disable_mask": "",
+		"rules": [{
+			"failureCheck6": {
+				"idle_seconds": 30,
+				"mode": "off"
+			},
+			"modem": {
+				"ip_src_wan_subnet_filter": true,
+				"profiles": [],
+				"net_sel_mode": "auto",
+				"aggressive_reset": true,
+				"lock_net_sos_rssi": -99,
+				"connect_mode": "auto",
+				"aux_antenna_enable": true,
+				"apn_mode": "default",
+				"functional_mode": "ipt",
+				"ehrpd_enable": true
+			},
+			"trigger_field": "uid",
+			"trigger_value": "",
+			"ondemand": false,
+			"ondemand_start_connected": true,
+			"_id_": "00000000-dea3-3ccd-a78d-e0196084396f",
+			"ondemand_idle_minutes": 5,
+			"failureCheck": {
+				"idle_seconds": 30,
+				"mode": "off"
+			},
+			"disabled": false,
+			"loadbalance": false,
+			"trigger_predicate": "contains",
+			"trigger_name": "Common Defaults",
+			"failback": {
+				"immediate": false,
+				"time": 90,
+				"rate_time": 90,
+				"mode": "rate",
+				"rate_bandwidth": 20
+			},
+			"trigger_priority": -10
+		},
+		{
+			"bandwidth_ingress": 40000,
+			"trigger_field": "type",
+			"bandwidth_egress": 40000,
+			"ip_mode": "dhcp",
+			"trigger_value": "ethernet",
+			"_id_": "00000001-dea3-3ccd-a78d-e0196084396f",
+			"trigger_name": "Ethernet Defaults",
+			"trigger_predicate": "is",
+			"trigger_priority": -1
+		},
+		{
+			"bandwidth_ingress": 25000,
+			"trigger_field": "type",
+			"bandwidth_egress": 25000,
+			"trigger_predicate": "is",
+			"_id_": "00000002-dea3-3ccd-a78d-e0196084396f",
+			"trigger_name": "LTE Defaults",
+			"trigger_value": "lte",
+			"trigger_priority": -2
+		},
+		{
+			"bandwidth_ingress": 10000,
+			"modem": {
+				"wimax_realm": "sprintpcs.com"
+			},
+			"trigger_field": "type",
+			"bandwidth_egress": 10000,
+			"trigger_value": "wimax",
+			"_id_": "00000003-dea3-3ccd-a78d-e0196084396f",
+			"trigger_name": "WiMax Defaults",
+			"trigger_predicate": "is",
+			"trigger_priority": -3
+		},
+		{
+			"bandwidth_ingress": 10000,
+			"trigger_field": "type",
+			"bandwidth_egress": 10000,
+			"trigger_value": "wwan",
+			"_id_": "00000004-dea3-3ccd-a78d-e0196084396f",
+			"trigger_name": "Wireless as WAN Defaults",
+			"failureCheck": {
+				"mode": "off"
+			},
+			"trigger_predicate": "is",
+			"trigger_priority": -4
+		},
+		{
+			"bandwidth_ingress": 1300,
+			"trigger_field": "type",
+			"bandwidth_egress": 1300,
+			"trigger_predicate": "is",
+			"_id_": "00000005-dea3-3ccd-a78d-e0196084396f",
+			"trigger_name": "3G Modem Defaults",
+			"trigger_value": "modem",
+			"trigger_priority": -5
+		},
+		{
+			"failureCheck6": {
+				
+			},
+			"modem": {
+				"ppp_password": "$1$3073a0bc$ZGyVRnm8HhnZAvJ8jmVx/w==",
+				"net_sel_mode": "auto",
+				"profiles": [{
+					"profile": 3,
+					"type": "ip",
+					"apn": "0011826"
+				},
+				{
+					"profile": 2,
+					"type": "ip",
+					"apn": "11826.mcs"
+				},
+				{
+					"profile": 1,
+					"type": "ip",
+					"apn": "Broadband"
+				}],
+				"cdma_adv": {
+					
+				},
+				"manual_apn": "broadband",
+				"selected_profile": 1,
+				"functional_mode": "ipt",
+				"apn_mode": "select"
+			},
+			"trigger_field": "uid",
+			"trigger_value": "1f0e98e7",
+			"dns6": [{
+				
+			},
+			{
+				
+			}],
+			"_id_": "00000006-dea3-3ccd-a78d-e0196084396f",
+			"failback": {
+				"rate_time": 90,
+				"mode": "rate",
+				"rate_bandwidth": 20
+			},
+			"failureCheck": {
+				
+			},
+			"pd6": [{
+				
+			},
+			{
+				
+			}],
+			"ip_override": {
+				"dns2": null,
+				"dns1": null,
+				"netmask": null,
+				"ip_address": null,
+				"gateway": null
+			},
+			"trigger_predicate": "is",
+			"trigger_name": "Internal LPE (SIM1)",
+			"trigger_priority": 10000
+		},
+		{
+			"trigger_field": "uid",
+			"trigger_value": "1f3c6020",
+			"_id_": "00000007-dea3-3ccd-a78d-e0196084396f",
+			"trigger_name": "Internal LPE (SIM2)",
+			"trigger_predicate": "is",
+			"disabled": true,
+			"trigger_priority": 10000
+		}]
+	},
+	"wwan": {
+		"scan_connected": false,
+		"radio": [{
+			"mode": "wwan",
+			"profiles": [{
+				"min_scan_rssi": -80,
+				"uid": "ac:a3:1e:f8:f1:01",
+				"eapconf": {
+					"phase2": "auth=MSCHAPV2",
+					"eaptype": "peap",
+					"phase1": ""
+				},
+				"wpacipher": "aes",
+				"wpapsk": "$1$c9b883ba$SM3se5wYGcKpgFCADoTB2Q==",
+				"enabled": true,
+				"bssid": "ac:a3:1e:f8:f1:01",
+				"ssid": "CP-Guest",
+				"active_scan": false,
+				"roaming_enabled": false,
+				"authmode": "wpa2psk",
+				"min_link_rssi": -70
+			}]
+		},
+		{
+			"mode": "disabled",
+			"profiles": [{
+				"min_scan_rssi": -80,
+				"uid": "CP-Guest:5G",
+				"eapconf": {
+					"phase2": "auth=MSCHAPV2",
+					"eaptype": "peap",
+					"phase1": ""
+				},
+				"wpacipher": "aes",
+				"wpapsk": "$1$c9b883ba$SM3se5wYGcKpgFCADoTB2Q==",
+				"enabled": true,
+				"bssid": null,
+				"ssid": "CP-Guest",
+				"active_scan": false,
+				"roaming_enabled": false,
+				"authmode": "wpa2psk",
+				"min_link_rssi": -70
+			}]
+		}],
+		"survey_interval": 60
+	},
+	"lan": [{
+		"dhcpd": {
+			"enabled": true,
+			"range6_start": null,
+			"lease_time": 720,
+			"lease6_time": 720,
+			"options": [],
+			"range_start": null,
+			"options_enabled": false,
+			"dhcp6_mode": "slaacdhcp",
+			"range6_end": null,
+			"range_end": null
+		},
+		"ip6_prefixlen": 64,
+		"name": "Primary LAN",
+		"wired_8021x": {
+			"eap": {
+				
+			},
+			"radius": {
+				"auth_servers": [{
+					"mac": "00:00:00:00:00:00",
+					"ip_address": "127.0.0.1",
+					"port": 1812
+				}],
+				"acct_servers": [{
+					"mac": "00:00:00:00:00:00",
+					"ip_address": "127.0.0.1",
+					"port": 1813
+				}]
+			},
+			"enabled": false
+		},
+		"_id_": "00000000-0d93-319d-8220-4a1fb0372b51",
+		"passthrough_subnet_mode": "auto",
+		"passthrough_client_mac": null,
+		"devices": [{
+			"type": "ethernet",
+			"uid": "lan"
+		},
+		{
+			"type": "wifibridge",
+			"uid": "00:26:82:eb:fa:71"
+		}],
+		"passthrough_gw": null,
+		"enabled": true,
+		"route_mode": "nat",
+		"ip6_mode": "delegated",
+		"schedule": {
+			"day": {
+				"dow_2": 130816,
+				"dow_7": 0,
+				"dow_6": 130816,
+				"dow_3": 130816,
+				"dow_5": 130816,
+				"dow_1": 0,
+				"dow_4": 130816
+			},
+			"enabled": false
+		},
+		"webfilter_whitelist": false,
+		"hostname": null,
+		"admin_access": true,
+		"vrrp": {
+			"auth_type": "none",
+			"init_state": "master",
+			"enabled": false,
+			"password": null,
+			"fault_priority": null,
+			"vrid": 10,
+			"auto_dhcp_opts": false,
+			"virtual_ip": null,
+			"priority": 100,
+			"advert_int": 1
+		},
+		"multicast": false,
+		"webfilter_ip_filter": false,
+		"passthrough_subnet": null,
+		"passthrough_cycle_time": null,
+		"multicast_quick": true,
+		"ip_address": "192.168.1.1",
+		"multicast_altnet": [],
+		"ip6_address": null,
+		"dhcprelay": {
+			"enabled": false,
+			"relays": []
+		},
+		"netmask": "255.255.255.0",
+		"upnp": false,
+		"stp": {
+			"enabled": false
+		}
+	},
+	{
+		"dhcpd": {
+			"options": [],
+			"enabled": true
+		},
+		"devices": [{
+			"type": "wlan",
+			"uid": "wireless1"
+		},
+		{
+			"type": "wlan",
+			"uid": "wireless1_1"
+		}],
+		"name": "Guest LAN",
+		"wired_8021x": {
+			"eap": {
+				
+			},
+			"radius": {
+				"auth_servers": [{
+					"mac": "00:00:00:00:00:00",
+					"ip_address": "127.0.0.1",
+					"port": 1812
+				}],
+				"acct_servers": [{
+					"mac": "00:00:00:00:00:00",
+					"ip_address": "127.0.0.1",
+					"port": 1813
+				}]
+			},
+			"enabled": false
+		},
+		"_id_": "00000001-0d93-319d-8220-4a1fb0372b51",
+		"passthrough_subnet_mode": "auto",
+		"enabled": false,
+		"route_mode": "nat",
+		"ip6_mode": "delegated",
+		"schedule": {
+			"day": {
+				"dow_2": 130816,
+				"dow_7": 0,
+				"dow_6": 130816,
+				"dow_3": 130816,
+				"dow_5": 130816,
+				"dow_1": 0,
+				"dow_4": 130816
+			},
+			"enabled": false
+		},
+		"webfilter_whitelist": false,
+		"admin_access": false,
+		"multicast": false,
+		"webfilter_ip_filter": false,
+		"multicast_quick": true,
+		"ip_address": "192.168.10.1",
+		"vrrp": {
+			"enabled": false
+		},
+		"multicast_altnet": [],
+		"netmask": "255.255.255.0",
+		"upnp": false,
+		"stp": {
+			"enabled": false
+		},
+		"dhcprelay": {
+			"enabled": false,
+			"relays": []
+		}
+	}],
+	"stats": {
+		"failover": {
+			"sample_size": 100,
+			"sample_rate": 18
+		},
+		"rf": {
+			"sample_size": 100,
+			"sample_rate": 18
+		},
+		"client_usage": {
+			"enabled": false
+		},
+		"usage": {
+			"sample_size": 100,
+			"sample_rate": 18
+		}
+	},
+	"certmgmt": {
+		"certs": [{
+			"_id_": "40d41adc-cece-1780-45a4-a67b408c9881",
+			"key": "$1$1898aeaf$nGjQtE0HHzXMqPtKazPzCg==",
+			"name": "CP Secure CA",
+			"x509": "-----BEGIN CERTIFICATE-----\nMIIFxjCCA66gAwIBAgIQQNQa3M7OF4BFpKZ7QIyYgTANBgkqhkiG9w0BAQUFADAp\nMScwJQYDVQQDEx5BY2Nlc3NNeUxBTi5jb20gUm9vdCBBdXRob3JpdHkwHhcNMDUw\nNDA3MTgyMTI3WhcNMjUwNDA3MTgyNTU5WjApMScwJQYDVQQDEx5BY2Nlc3NNeUxB\nTi5jb20gUm9vdCBBdXRob3JpdHkwggIiMA0GCSqGSIb3DQEBAQUAA4ICDwAwggIK\nAoICAQDNEeii7++yNyKtov8JqeDBKQCQKocBClrTO6zUk6wTioY4W8Uasm59Vpw6\noXShTmVa0S1zTESDWLs6DycaM0djFL/Ez5Pe+K092zN8+cf62iQBljV5ydqtYhUB\n9K80uShi6+0ItOxqp33WMBA8tXEXvLm1QiHg1yuRHhTOMrBf+ltOzcfhGNQkhMaL\nE3YNt13Wx3KSWQKr/1GwPXuyv6Q331zpKaqtU57J6TMvxEhgNxPex0SjEsIaqcp3\nXz2AO/8GlZg9UzBY4IyGQj4IGhyk3WPDFu1ZW2Zp/DEtwCI0V6QqsJZIvaihfL06\nvBc+UxVX14B3pKMEOSz1xO6+svoHV2ex3YBNZofBqlFVFx4tTPYWf1EJx2kPQuk9\nd28FCrpQEeLdrZIk0oiAZCgIY9K7LEck6DsE8Ns+KgmWmYavmIRfYBE5qRNwOmuO\nzOUBkM35NsAY08QqStiwk9ZYG0HCrdDf66CR/2w6KMIItRUDCrUyLYC0e5V67+dH\nbrGN/hD2203qyh5497yoB71IIg2NMUuoqZ29b82m6lBvI72C7LyX+wNOIrVAphIH\n5mqDU1SDw2nQ76dSzqskvl0DhnOJQfBRpH6Men0CINObtIhU/SiQEcvQuIO59Pwb\nGS4ZuLUm5AJZ38HSAVBX03d4x/OqLN05IKo/G9GJkGhnHeDWcQIDAQABo4HpMIHm\nMAsGA1UdDwQEAwIBhjAPBgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBT5tqxnR+C1\n+gsImGKCnX9lcEJ5nTCBlAYDVR0fBIGMMIGJMIGGoIGDoIGAhj9odHRwOi8vcm9v\ndGNhL0NlcnRFbnJvbGwvQWNjZXNzTXlMQU4uY29tJTIwUm9vdCUyMEF1dGhvcml0\neS5jcmyGPWZpbGU6Ly9cXHJvb3RjYVxDZXJ0RW5yb2xsXEFjY2Vzc015TEFOLmNv\nbSBSb290IEF1dGhvcml0eS5jcmwwEAYJKwYBBAGCNxUBBAMCAQAwDQYJKoZIhvcN\nAQEFBQADggIBABOdctmZ8GW0spUWNvj2pkxaouZK+KSt1UW4t1Oc/joBPOd83X6q\nL74v2nQxuh7xzZttTZJHK3WveypIqJlxkQF0hZ2Cy8NW9kE0piO2k7vPzvjXopxe\n5RLdmZYLt7Ee/hXZm02AwRYQPTMsAtvrBLd0wY57IzecyoyKVMkpKOgUcqqxyxyE\ngqgxDgfvx9iPHKTlDpEF9+Sy4SgGsAon0mIFDUMR0L8RnxVsSmX3rUoeEd5lWCwa\nnywLsUSbZI5ZZJbdZbbiDl0vJP/jPiqjRfUD5KBbIInWhtwvZ3qGiKNNfnJ3/6/R\n0oVIT8LkV+iwXiKVlwSQI9gOGT6WrHBR4GulwDQ6F84yUurTnyG12mzuxOqpZapc\nUJyAmLc4SKGvZsDoNYWva2x4t3g4XbZ343hCTl8daKNjk+pRizJf9ehiEzMR33Lq\nZ+5lOMgp0Ianevdf2H/eWlY1kE0oDhaiVE+FHCRmYCLuRdNalTqstQA7lZWpz/jJ\nm9S/oAaH7o33rN/lSdi6QyT78UtWP4h+0VskErAo+t2lmuk8JbSems92tlgm28Ig\nbgiJCB7RmFgZrXUJezbDoNLDIDIR3RTcoXFV/73Z0aYYV/ZDEFarOFlRiq26cf63\n+2dFHW/m9V9TmKIufwGcSt019wR/fMLQukuHeCgvlal6CFySlpf1Wl8x\n-----END CERTIFICATE-----\n",
+			"ca_uuid": ""
+		},
+		{
+			"_id_": "00000001-4030-4315-ae27-a8818a30c9fb",
+			"key": "$1$1898aeaf$nGjQtE0HHzXMqPtKazPzCg==",
+			"name": "CP Zscaler (CA)",
+			"x509": "-----BEGIN CERTIFICATE-----\nMIID/TCCAuWgAwIBAgIJAN7GL41or2euMA0GCSqGSIb3DQEBBQUAMIGUMQswCQYD\nVQQGEwJVUzETMBEGA1UECAwKQ2FsaWZvcm5pYTERMA8GA1UEBwwIU2FuIEpvc2Ux\nEDAOBgNVBAoMB1pzY2FsZXIxDjAMBgNVBAsMBXpQYXRoMRswGQYDVQQDDBJ0bHYu\ncHJvZC56cGF0aC5uZXQxHjAcBgkqhkiG9w0BCQEWD25vY0B6c2NhbGVyLmNvbTAe\nFw0xNDA3MDIyMzM0NThaFw0xOTA3MDEyMzM0NThaMIGUMQswCQYDVQQGEwJVUzET\nMBEGA1UECAwKQ2FsaWZvcm5pYTERMA8GA1UEBwwIU2FuIEpvc2UxEDAOBgNVBAoM\nB1pzY2FsZXIxDjAMBgNVBAsMBXpQYXRoMRswGQYDVQQDDBJ0bHYucHJvZC56cGF0\naC5uZXQxHjAcBgkqhkiG9w0BCQEWD25vY0B6c2NhbGVyLmNvbTCCASIwDQYJKoZI\nhvcNAQEBBQADggEPADCCAQoCggEBAKqLKGoYePoOiG7/HJdSdeccXS+jtjaDR2GC\nv5Ae3dwM036GmXSsnhjWLWyU3PIhmWlmgTTDYExJa9fV2JyQR7Fcpwi67wqGEpMB\n7CBas/53RXfF1wxIEy/W5KJBQHlXqNaOaXUnBQ7Ij5klAByR5ngm6zvl1LsefuxT\nb7VQBLhT/s1Twjz1c/sJTxQgS9mkvulrPpaviQnVV7smFoy5RdJabLv29K/xlV0c\nzw006TXTXwwnw3bIniTWUbh9u9l+arJGacJPKVfgFiLDNHnG58122e72rNIknwH/\nC+ILoK6TENN7PVNLBfazTrfNh0t8Pq76TicC1BUKHB/ILdI3dUECAwEAAaNQME4w\nHQYDVR0OBBYEFK8Lc4TM9Rvb0XB/EAv5Quu+pVPTMB8GA1UdIwQYMBaAFK8Lc4TM\n9Rvb0XB/EAv5Quu+pVPTMAwGA1UdEwQFMAMBAf8wDQYJKoZIhvcNAQEFBQADggEB\nAGUFCYtdVSsQVkVFVktEJfE2rp+h11cezjk/JztxUf7WRee4B9v/NRg7NIuoTfNX\nFxBwkq4/xGumsLmI3mHSx1RMLEEGkIaOql+PWFTrAoi/zMjZyXIPb4Hg1wVrbJYV\n2pJDwXgqA6fH7hlPvWM3wY2KwXpuUb2g/igfBEAdUSxAwsWrWIlRT9wSRDoPlAwt\n6VER1yBi7jEgpURoXDrxF23MV6uSLo605D4MuKcUPpeWTOQySs0m7EpDF5IA4CoF\nK/g9C0nNl3afhMPvJLnYiC91/NUrMaxIs/CbsONjU2xaDPhr6Tj8QVKetWRXeBlc\nDMMfaFPKuhzjKF/2vT4fbyQ=\n-----END CERTIFICATE-----\n",
+			"ca_uuid": ""
+		},
+		{
+			"_id_": "00000002-4030-4315-ae27-a8818a30c9fb",
+			"key": "$1$665d644b$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",
+			"name": "CP Zscaler",
+			"x509": "-----BEGIN CERTIFICATE-----\nMIIDhjCCAm4CCQCml1uuHSrZqjANBgkqhkiG9w0BAQUFADCBlDELMAkGA1UEBhMC\nVVMxEzARBgNVBAgMCkNhbGlmb3JuaWExETAPBgNVBAcMCFNhbiBKb3NlMRAwDgYD\nVQQKDAdac2NhbGVyMQ4wDAYDVQQLDAV6UGF0aDEbMBkGA1UEAwwSdGx2LnByb2Qu\nenBhdGgubmV0MR4wHAYJKoZIhvcNAQkBFg9ub2NAenNjYWxlci5jb20wHhcNMTQw\nOTI5MjMxNDU3WhcNMTYwOTI4MjMxNDU3WjB1MQswCQYDVQQGEwJVUzEOMAwGA1UE\nCAwFSWRhaG8xDjAMBgNVBAcMBUJvaXNlMRkwFwYDVQQKDBBDcmFkbGVwb2ludCwg\nSW5jMSswKQYDVQQDDCJjcmFkbGVwb2ludC5jb20udGx2LnByb2QuenBhdGgubmV0\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA2LAhnnPxYHvHcutxwDR9\nQE/5qaEWEWbNQQ/3CbDvZXRuuMTUnF19EvDoLTgC2hAdXlmmm+GpREsVZDypSjS7\nPYposvVEtncIIeY6v3aP/6mbdbfVeyDSBtzlUtDF0kOyIwhRhAl7yFxQf2GdZZVt\ngsHxCd/7ohIfI4m3otcLI44l2E7QiPyOFgJADEXQnjFDefMxe9ZS3R7KzmSmAYJJ\nRHOckKM2lVXRq5LTUdVwExqDAK+d4YL7KipeYYGmitwXUl1hVkhA5Gs5iS4q+9Ow\nRKwfac2GfGAL6jck9sDACFCWj4xNo3By/40CVijJZx1zqG2gIb3HB6nLuLMGDicM\nPQIDAQABMA0GCSqGSIb3DQEBBQUAA4IBAQCh9RsvgO9Csxi76Dbxd8bCsyDfCMx3\n0/Dcso4OPld/MWkm3xW7lV/XJH/SYrNGO1+Z6pFFyOvqPJXHNwCQHzAu68ugdphv\naTNlLDIlCkrjpoYNLMhh2jLaD7igMIIUg4aTSvyqJhci6Sg2QMkMM2nUko7XGtoM\nNaCbIm3tW8G9Mxk4iQXvpTc+P3ex9tePHSycmW6dZpv8ndpTnlVw7kJh9kCOttb8\nOA+BxqjzqNF5fVujCNXxanNPrsGs2v7jBWiqym0eyEVO5OxEec+nz8zb4XgD16wk\nozSQEEVoHDfO6IH6nnbA06E9C7y5bBNZjqYlOTfNXzLniZx813Zezxq7\n-----END CERTIFICATE-----\n",
+			"ca_uuid": "00000001-4030-4315-ae27-a8818a30c9fb"
+		}]
+	},
+	"qos": {
+		"enabled": false,
+		"rules": []
+	},
+	"ethernet": [{
+		"enabled": true,
+		"port": 0
+	},
+	{
+		"enabled": true,
+		"port": 1
+	},
+	{
+		"enabled": true,
+		"port": 2
+	}],
+	"split_dns": {
+		"servers": [{
+			"domain_list": "00000000-8468-3d39-a82b-156fb44f01ec",
+			"_id_": "00000000-6190-3ff7-b7e4-22ef300b8e4c",
+			"mode": "disabled",
+			"priority": 30
+		},
+		{
+			"domain_list": "00000000-8468-3d39-a82b-156fb44f01ec",
+			"_id_": "00000001-6190-3ff7-b7e4-22ef300b8e4c",
+			"mode": "disabled",
+			"priority": 30
+		}],
+		"domain_lists": [{
+			"domains": [],
+			"_id_": "00000000-8468-3d39-a82b-156fb44f01ec"
+		}]
+	},
+	"vlan": [{
+		"vid": 1,
+		"mode": "wan",
+		"uid": "wan",
+		"ports": [{
+			"mode": "untagged",
+			"port": 0
+		}]
+	},
+	{
+		"vid": 2,
+		"mode": "lan",
+		"uid": "lan",
+		"ports": [{
+			"mode": "untagged",
+			"port": 1
+		},
+		{
+			"mode": "untagged",
+			"port": 2
+		}]
+	}],
+	"routing": {
+		"bgp": {
+			"debug": false,
+			"community_list": [],
+			"access_list": [],
+			"routers": []
+		},
+		"rip": {
+			"debug": false,
+			"routers": []
+		},
+		"static": [],
+		"route_map": [],
+		"policies": [],
+		"access_list": [],
+		"ripng": {
+			"debug": false,
+			"routers": []
+		},
+		"ospf": {
+			"debug": false,
+			"routers": []
+		},
+		"tables": [],
+		"prefix_list": []
+	},
+	"wlan": {
+		"radio": [{
+			"extended_channel": 1,
+			"phycoex": true,
+			"shortslot": true,
+			"greenfield": false,
+			"wps_enabled": true,
+			"channel": 1,
+			"selection_schedule": "once",
+			"dtim": 1,
+			"beacon": 100,
+			"enabled": false,
+			"rtsthresh": 2347,
+			"bss": [{
+				"radius0port": 1812,
+				"wparekeyinterval": 3600,
+				"uid": "wireless0",
+				"radius0key": "$1$26cc935c$02le7S8kl9ZvL8yZ1ZOeAQ==",
+				"radius1ip": "0.0.0.0",
+				"defaultwepkey": 0,
+				"wpapsk": "$1$3073a0bc$ZGyVRnm8HhnZAvJ8jmVx/w==",
+				"wepkey0": "0123456789",
+				"wps": {
+					"pbc": true,
+					"mode": 4,
+					"state": 2,
+					"pin": "00000000"
+				},
+				"wepkey2": "0123456789",
+				"hidden": false,
+				"wmm": true,
+				"isolate": false,
+				"enabled": true,
+				"radius0ip": "0.0.0.0",
+				"ssid": "IBR1100-702",
+				"wpacipher": "aes",
+				"wepkey1": "0123456789",
+				"wepkey3": "0123456789",
+				"authmode": "wpa2psk"
+			},
+			{
+				"radius0port": 1812,
+				"wparekeyinterval": 3600,
+				"uid": "wireless1",
+				"radius0key": "$1$26cc935c$02le7S8kl9ZvL8yZ1ZOeAQ==",
+				"radius1ip": "0.0.0.0",
+				"defaultwepkey": 0,
+				"wpapsk": "$1$3073a0bc$ZGyVRnm8HhnZAvJ8jmVx/w==",
+				"wepkey0": "0123456789",
+				"wps": {
+					"pbc": false,
+					"mode": 0,
+					"state": 0,
+					"pin": "00000000"
+				},
+				"wepkey2": "0123456789",
+				"hidden": false,
+				"wmm": true,
+				"isolate": true,
+				"enabled": false,
+				"radius0ip": "0.0.0.0",
+				"ssid": "Public-702",
+				"wpacipher": "aes",
+				"wepkey1": "0123456789",
+				"wepkey3": "0123456789",
+				"authmode": "none"
+			}],
+			"tx_stream": 0,
+			"channel_selection": "smart",
+			"mcs": 33,
+			"client_timeout": 300,
+			"rx_stream": 0,
+			"shortgi": true,
+			"radius_timeout": 3600,
+			"radius_retry": 60,
+			"phymhz": 0,
+			"txpower": 100,
+			"fragthresh": 2346,
+			"isolation": true,
+			"wifi_band": 0,
+			"phymode": 5,
+			"diversity": 0
+		},
+		{
+			"extended_channel": 1,
+			"phycoex": true,
+			"shortslot": true,
+			"greenfield": false,
+			"wps_enabled": true,
+			"channel": 36,
+			"selection_schedule": "once",
+			"dtim": 1,
+			"beacon": 100,
+			"enabled": false,
+			"rtsthresh": 2347,
+			"bss": [{
+				"radius0port": 1812,
+				"wparekeyinterval": 3600,
+				"uid": "wireless0_1",
+				"radius0key": "$1$26cc935c$02le7S8kl9ZvL8yZ1ZOeAQ==",
+				"radius1ip": "0.0.0.0",
+				"defaultwepkey": 0,
+				"wpapsk": "$1$3073a0bc$ZGyVRnm8HhnZAvJ8jmVx/w==",
+				"wepkey0": "0123456789",
+				"wps": {
+					"pbc": true,
+					"mode": 4,
+					"state": 2,
+					"pin": "00000000"
+				},
+				"wepkey2": "0123456789",
+				"hidden": false,
+				"wmm": true,
+				"isolate": false,
+				"enabled": true,
+				"radius0ip": "0.0.0.0",
+				"ssid": "IBR1100-702-5g",
+				"wpacipher": "aes",
+				"wepkey1": "0123456789",
+				"wepkey3": "0123456789",
+				"authmode": "wpa2psk"
+			},
+			{
+				"radius0port": 1812,
+				"wparekeyinterval": 3600,
+				"uid": "wireless1_1",
+				"radius0key": "$1$26cc935c$02le7S8kl9ZvL8yZ1ZOeAQ==",
+				"radius1ip": "0.0.0.0",
+				"defaultwepkey": 0,
+				"wpapsk": "$1$3073a0bc$ZGyVRnm8HhnZAvJ8jmVx/w==",
+				"wepkey0": "0123456789",
+				"wps": {
+					"pbc": false,
+					"mode": 0,
+					"state": 0,
+					"pin": "00000000"
+				},
+				"wepkey2": "0123456789",
+				"hidden": false,
+				"wmm": true,
+				"isolate": true,
+				"enabled": false,
+				"radius0ip": "0.0.0.0",
+				"ssid": "Public-702-5g",
+				"wpacipher": "aes",
+				"wepkey1": "0123456789",
+				"wepkey3": "0123456789",
+				"authmode": "none"
+			}],
+			"tx_stream": 0,
+			"channel_selection": "smart",
+			"mcs": 33,
+			"client_timeout": 300,
+			"rx_stream": 0,
+			"shortgi": true,
+			"radius_timeout": 3600,
+			"radius_retry": 60,
+			"phymhz": 1,
+			"txpower": 100,
+			"fragthresh": 2346,
+			"isolation": true,
+			"wifi_band": 1,
+			"phymode": 14,
+			"diversity": 0
+		}],
+		"radius_verbosity": 2,
+		"wlan_verbosity": 2
+	},
+	"dynamic": {
+		
+	},
+	"openvpn": {
+		"tunnels": []
+	},
+	"l2tp": {
+		"global": {
+			
+		},
+		"tunnels": []
+	},
+	"dns": {
+		"servers": [{
+			"priority": 10,
+			"iface": "wan",
+			"ip_address": "4.2.2.2"
+		},
+		{
+			"priority": 20,
+			"iface": "wan",
+			"ip_address": "4.2.2.3"
+		}],
+		"mode": "auto",
+		"force_redir": false,
+		"hosts": []
+	},
+	"shell": {
+		"prompt": "[{username}@{hostname}: <bold>{cwd}</bold>]$ "
+	},
+	"firewall": {
+		"macfilter": {
+			"whitelist": false,
+			"enabled": false,
+			"macs": []
+		},
+		"portfwd": [{
+			"enabled": true,
+			"ip_address": "192.168.1.153",
+			"wan_port_end": 1883,
+			"wan_port_start": 1883,
+			"protocol": "tcp",
+			"lan_port_offt": 1883,
+			"priority": 10,
+			"name": "MQTT"
+		}],
+		"alg": {
+			"tftp": false,
+			"sip": false,
+			"irc": false,
+			"pptp": true,
+			"ftp": true
+		},
+		"dmz": {
+			"enabled": false
+		},
+		"anti_spoof": true,
+		"npt": {
+			"mode": "lbonly"
+		},
+		"ssh_admin": {
+			"remote_access": false,
+			"weak_ciphers": false,
+			"enabled": true,
+			"port": 22
+		},
+		"state_timeouts": {
+			
+		},
+		"wan_ping": false,
+		"remote_admin": {
+			"secure_port": 8443,
+			"usb_logging": false,
+			"secure_only": false,
+			"enabled": false,
+			"allowed_ips": [],
+			"restrict_ips": false,
+			"techsupport_access": false,
+			"port": 8080
+		},
+		"dns_poll_minimum": 180
+	},
+	"vpn": {
+		"debug": false,
+		"adv_settings": {
+			"tunnel_connect_retry": 30,
+			"natt_keepalive": 20,
+			"port": 500,
+			"natt_port": 4500
+		},
+		"enabled": false,
+		"tunnels": []
+	},
+	"failover": {
+		"mode": "roundrobin"
+	},
+	"alerts": {
+		"wan_status_change_limit": 20,
+		"ip_banned": false,
+		"schedule_day_of_month": 1,
+		"sdk_app": false,
+		"login_failure": false,
+		"account_locked": false,
+		"config_change": false,
+		"gpio_state_change_limit": 20,
+		"handlers": {
+			"smtp": {
+				"retry_delay": 5,
+				"retry_attempts": 5,
+				"email_subject_prefix": "Cradlepoint Alert:",
+				"smtp_encryption_required": false,
+				"smtp_server_port": 25,
+				"smtp_auth_required": false
+			}
+		},
+		"full_system_log": false,
+		"license_expiration": false,
+		"ipsec_tunnel_down": false,
+		"gpio_state_change": false,
+		"recurring_system_log": false,
+		"wan_status_change": false,
+		"schedule_time": 480,
+		"unrecognized_mac_alert": false,
+		"custom_alert": false,
+		"schedule_day_of_week": "monday",
+		"login_success": false,
+		"schedule_frequency": "daily",
+		"firmware_upgrade": false,
+		"reboot_status_change": false
+	},
+	"asavie": {
+		"tunnels": []
+	},
+	"nhrp": {
+		"interfaces": [],
+		"responder": false
+	}
+}

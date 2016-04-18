@@ -1,1 +1,0 @@
-{"ip_mode": "tcp", "dtr_output": "on", "ser_parity": "None", "ip_port": 2101, "_path": "api/config/serial/0", "ser_stopbits": 1, "stopbits": 1, "baud": 9600, "rts_output": "on", "ser_baud": 9600, "databits": 8, "ser_databits": 8, "flow_control": "None", "eoln": "raw", "parity": "N", "product": "DTE", "ser_port": "COM5", "net_encode": "binary"}

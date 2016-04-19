@@ -12,7 +12,7 @@ from cp_lib.parse_duration import TimeDuration
 class MainStartUp(object):
 
     # the settings used by main.py are in section [startup]
-    SETS_SECTION = "startup"
+    SECTION_STARTUP = "startup"
 
     # ["boot_delay_max"] is int, is how long to delay for desired
     #                                conditions to be true
@@ -65,6 +65,7 @@ class MainStartUp(object):
         app_mod = importlib.import_module(app_main)
         app_base = app_mod.RouterApp(app_main)
 
+
         if True:
             # app_mod = importlib.import_module(app_main, "RouterApp")
             # app_mod = importlib.import_module("network.tcp_echo.tcp_echo")
@@ -75,13 +76,13 @@ class MainStartUp(object):
 
         # see if we should delay before existing
         exit_delay = self.DEFAULT_EXIT_DELAY
-        if self.SETS_SECTION in self.settings:
+        if self.SECTION_STARTUP in self.settings:
             # then we do have a [startup] section in settings.json
 
-            if self.SETS_EXIT_DELAY in self.settings[self.SETS_SECTION]:
+            if self.SETS_EXIT_DELAY in self.settings[self.SECTION_STARTUP]:
                 # how many seconds to wait for boot conditions to be satisfied
                 # here is string, we don't care what yet
-                exit_delay = self.settings[self.SETS_SECTION][
+                exit_delay = self.settings[self.SECTION_STARTUP][
                     self.SETS_EXIT_DELAY].lower()
 
         if exit_delay in ('forever', 'loop', 'true'):
@@ -137,27 +138,27 @@ class MainStartUp(object):
         delay_for_valid_time = self.DEF_DELAY_FOR_TIME
         delay_for_uplink = self.DEF_DELAY_FOR_WAN
 
-        if self.SETS_SECTION in self.settings:
+        if self.SECTION_STARTUP in self.settings:
             # then we do have a [startup] section in settings.json
 
-            if self.SET_BOOT_DELAY_SEC in self.settings[self.SETS_SECTION]:
+            if self.SET_BOOT_DELAY_SEC in self.settings[self.SECTION_STARTUP]:
                 # how many seconds to wait for boot conditions to be satisfied
                 time_duration.parse_time_duration_to_seconds(
-                    self.settings[self.SETS_SECTION][self.SET_BOOT_DELAY_SEC])
+                    self.settings[self.SECTION_STARTUP][self.SET_BOOT_DELAY_SEC])
                 delay_seconds = time_duration.get_seconds()
 
-            if self.SET_DELAY_FOR_TIME in self.settings[self.SETS_SECTION]:
+            if self.SET_DELAY_FOR_TIME in self.settings[self.SECTION_STARTUP]:
                 # see if we delay until time.time() is returning valid info,
                 # which prevents initial time-series data from being
                 # generated with bogus 1-1-1970 time-stamps
                 delay_for_valid_time = \
-                    self.settings[self.SETS_SECTION][self.SET_DELAY_FOR_TIME]
+                    self.settings[self.SECTION_STARTUP][self.SET_DELAY_FOR_TIME]
 
-            if self.SET_DELAY_FOR_WAN in self.settings[self.SETS_SECTION]:
+            if self.SET_DELAY_FOR_WAN in self.settings[self.SECTION_STARTUP]:
                 # see if we delay until router has a valid WAN uplink, which
                 # prevents cloud clients from mistakenly flipping into
                 # FAULT/RECOVERY modes because they tried to connect to fast
-                delay_for_uplink = self.settings[self.SETS_SECTION][
+                delay_for_uplink = self.settings[self.SECTION_STARTUP][
                     self.SET_DELAY_FOR_WAN]
 
         if delay_for_valid_time:

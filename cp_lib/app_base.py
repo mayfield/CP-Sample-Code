@@ -76,6 +76,9 @@ class CradlepointAppBase(object):
             self.logger.exception("CSClient init failed")
             raise
 
+        # show NAME, Description, Version, UUID
+        self.show_router_app_info()
+
         if call_router:
             # load the PRODUCT INFO into settings
             load_product_info(self.settings, self.cs_client)
@@ -115,6 +118,42 @@ class CradlepointAppBase(object):
             self.settings["product_info"]["product_options"] = options
             self.settings["product_info"]["product_has_wifi"] = wifi
         return value
+
+    def show_router_app_info(self):
+        """
+        Dump out some of the [application] information
+
+        :return:
+        """
+        # [application]
+        # name=hello_world
+        # description=Hello World sample, using 3 subtasks
+        # version=1.9
+        # uuid=c69cfe79-5f11-4cae-986a-9d568bf96629
+        if 'application' in self.settings:
+            # it should be, but ignore if not!
+
+            if 'name' in self.settings['application']:
+                self.logger.info(
+                    "Starting Router App named \"{}\"".format(
+                        self.settings['application']['name']))
+
+            if 'description' in self.settings['application']:
+                self.logger.info(
+                    "App Desc:{}".format(
+                        self.settings['application']['description']))
+
+            if 'version' in self.settings['application']:
+                self.logger.info(
+                    "App Vers:{}".format(
+                        self.settings['application']['version']))
+
+            if 'uuid' in self.settings['application']:
+                self.logger.info(
+                    "App UUID:{}".format(
+                        self.settings['application']['uuid']))
+
+        return
 
     def import_full_file_name(self, dot_name):
         """

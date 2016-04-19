@@ -1,8 +1,8 @@
 
 def split_version_string(value, default=None):
     """
-    Given a string in the form X.Y, split to two integers. Trailing text is discarded, so X.Y.Z returns (x, y)
-    and the Z is discarded.
+    Given a string in the form X.Y, split to two integers. Trailing text is
+    discarded, so X.Y.Z returns (x, y) and the Z is discarded.
 
     :param str value: a string version such as "6.1" or "7.345.beta"
     :param str default:
@@ -48,13 +48,14 @@ SETS_NAME_MINOR = 'minor_version'
 
 def split_version_save_to_dict(value, sets, default=None, section=None):
     """
-    Given a string in the form X.Y, split to two integers and save as ['major_version'] and ['minor_version']
-    in the [section] of sets.
+    Given a string in the form X.Y, split to two integers and save as
+    ['major_version'] and ['minor_version'] in the [section] of sets.
 
     :param str value: a string version such as "6.1" or "7.345.beta"
     :param dict sets: the settings, as per normal SDK
     :param str default:
-    :param str section: the sub-section in sets, like "application" or "fw_info"; if None, assume in base setts
+    :param str section: the sub-section in sets, like "application" or
+                        "fw_info"; if None, assume in base setts
     :return dict:
     """
     major, minor = split_version_string(value, default)
@@ -74,13 +75,15 @@ def split_version_save_to_dict(value, sets, default=None, section=None):
 
 def sets_version_to_str(sets, section=None):
     """
-    Given a dict() (the 'sets'), see if at least one of ['major_version'] and ['minor_version'] exist, if so
+    Given a dict() (the 'sets'), see if at least one of ['major_version']
+    and ['minor_version'] exist, if so
     return a string formed as "major.minor", with 0 being a default.
 
     If neither exist, then return None
 
     :param dict sets: the settings, as per normal SDK
-    :param str section: the sub-section in sets, like "application" or "fw_info"; if None, assume in base setts
+    :param str section: the sub-section in sets, like "application" or
+                        "fw_info"; if None, assume in base setts
     :rtype str:
     """
     if section is None:

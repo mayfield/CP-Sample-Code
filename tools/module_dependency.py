@@ -9,26 +9,31 @@ import os.path
 
 class BuildDependencyList(object):
 
-    # these are the modules on Cradlepoint FW with Python 3.3 (/usr/lib/python3.3)
+    # these are modules on Cradlepoint FW with Python 3.3 (/usr/lib/python3.3)
     COMMON_STD_MODULES = [
-        "OpenSSL", "__future__", "abc", "argparse", "base64", "bisect", "calendar", "cgi", "chunk",
-        "cmd", "code", "codecs", "codeop", "collections", "configparser", "contextlib", "copy",
-        "copyreg", "ctypes", "datetime", "dateutil", "difflib", "dnslib", "dnsproxy",
-        "dummy_threading", "email", "encodings", "fnmatch", "functools", "getopt", "gettext",
-        "glob", "gzip", "hashlib", "heapq", "hmac", "html", "http", "importlib", "io",
-        "ipaddress", "json", "keyword", "linecache", "locale", "logging", "lzma",
-        "mailbox", "mimetypes", "numbers", "os", "pickle", "pkgutil", "platform",
-        "pprint", "py_compile", "pyrad", "queue", "quopri", "random", "re", "reprlib",
-        "runpy", "serial", "shlex", "smtplib", "socket", "socketserver", "sre_compile",
-        "sre_constants", "sre_parse", "ssl", "stat", "string", "stringprep", "struct",
-        "subprocess", "tarfile", "telnetlib", "textwrap", "threading", "token", "tokenize",
-        "traceback", "tty", "types", "urllib", "uu", "uuid", "weakref", "xml",
+        "OpenSSL", "__future__", "abc", "argparse", "base64", "bisect",
+        "calendar", "cgi", "chunk", "cmd", "code", "codecs", "codeop",
+        "collections", "configparser", "contextlib", "copy", "copyreg",
+        "ctypes", "datetime", "dateutil", "difflib", "dnslib", "dnsproxy",
+        "dummy_threading", "email", "encodings", "fnmatch", "functools",
+        "getopt", "gettext", "glob", "gzip", "hashlib", "heapq", "hmac",
+        "html", "http", "importlib", "io", "ipaddress", "json", "keyword",
+        "linecache", "locale", "logging", "lzma", "mailbox", "mimetypes",
+        "numbers", "os", "pickle", "pkgutil", "platform", "pprint",
+        "py_compile", "pyrad", "queue", "quopri", "random", "re", "reprlib",
+        "runpy", "serial", "shlex", "smtplib", "socket", "socketserver",
+        "sre_compile", "sre_constants", "sre_parse", "ssl", "stat", "string",
+        "stringprep", "struct", "subprocess", "tarfile", "telnetlib",
+        "textwrap", "threading", "token", "tokenize", "traceback", "tty",
+        "types", "urllib", "uu", "uuid", "weakref", "xml",
 
         # these exist on router, but you probably should not be using!
-        # are either Cradlepoint-specific, or obsolete, or depend on STDIO access you lack
-        # shutil & tempfile in this list because large file ops on router flash is risky
-        "_compat_pickle", "_pyio", "_strptime", "_weakrefset", "bdb", "compileall", "cProfile",
-        "cp", "cpsite", "dis", "genericpath", "imp", "inspect", "lib-dynload", "opcode", "pdb",
+        # are either Cradlepoint-specific, or obsolete, or depend on STDIO
+        # access you lack; shutil & tempfile in this list because large file
+        # ops on router flash is risky
+        "_compat_pickle", "_pyio", "_strptime", "_weakrefset", "bdb",
+        "compileall", "cProfile", "cp", "cpsite", "dis", "genericpath",
+        "imp", "inspect", "lib-dynload", "opcode", "pdb",
         "posixpath", "shutil", "ssh", "tempfile", "tornado", "warnings",
 
         # exist, but not in /usr/lib/python3.3? builtin?
@@ -47,7 +52,8 @@ class BuildDependencyList(object):
 
         # # load the CP sample built-in list, will be of form: {
         # #       "cp_lib.clean_ini": [],
-        # #       "cp_lib.cp_logging": ["cp_lib.hw_status", "cp_lib.load_settings"],
+        # #       "cp_lib.cp_logging": ["cp_lib.hw_status",
+        #                               "cp_lib.load_settings"],
         # # }
         # json_name = os.path.join("tools", "module_dependency.json")
         # file_han = open(json_name, "r")
@@ -75,16 +81,20 @@ class BuildDependencyList(object):
             raise TypeError
 
         if not os.path.exists(file_name):
-            raise FileNotFoundError("module_dependency: file({}) doesn't exist.".format(file_name))
+            raise FileNotFoundError(
+                "module_dependency: file({}) doesn't exist.".format(file_name))
 
         if not os.path.isfile(file_name):
-            raise FileNotFoundError("module_dependency: file({}) doesn't exist.".format(file_name))
+            raise FileNotFoundError(
+                "module_dependency: file({}) doesn't exist.".format(file_name))
 
         value = os.path.splitext(file_name)
-        # should be like ('network\\tcp_echo\\tcp_echo', '.py') or ('network\\tcp_echo', '')
+        # should be like ('network\\tcp_echo\\tcp_echo', '.py') or
+        # ('network\\tcp_echo', '')
         # self.logger.debug("value({})".format(value))
         if value[1] != ".py":
-            # self.logger.debug("module_dependency: file({}) is not PYTHON (.py)normal file.")
+            # self.logger.debug(
+            #   "module_dependency: file({}) is not PYTHON (.py)normal file.")
             return None
 
         # at this point, the file should be a .PY file at least
@@ -96,7 +106,7 @@ class BuildDependencyList(object):
                 tokens = line.split()
 
                 if len(tokens) >= 2 and tokens[0] == "import":
-                    # then is like "import os.path" or "import os, sys, socket"
+                    # then like "import os.path" or "import os, sys, socket"
 
                     if tokens[1][-1] != ",":
                         # then is like "import os.path"
@@ -112,8 +122,10 @@ class BuildDependencyList(object):
                                 value = name
                             self.add_if_new(value)
 
-                elif len(tokens) >= 4 and tokens[0] == "from" and tokens[2] == "import":
-                    # then is like "from cp_lib.cp_self.logger import get_recommended_logger"
+                elif len(tokens) >= 4 and tokens[0] == "from" and \
+                        tokens[2] == "import":
+                    # then is like "from cp_lib.cp_self.logger import
+                    #       get_recommended_logger"
                     self.add_if_new(tokens[1])
 
         file_han.close()
@@ -131,7 +143,7 @@ class BuildDependencyList(object):
         # self.logger.debug("add_if_new({0})".format(new_name))
 
         if new_name in self.COMMON_STD_MODULES:
-            # scan through existing STD LIB like "self.logger", "sys", or "time"
+            # scan through existing STD LIB like "self.logger", "sys", "time"
             # self.logger.debug("Mod({}) is in std lib.".format(new_name))
             return 0
 
@@ -141,7 +153,7 @@ class BuildDependencyList(object):
             self.logger.debug("Mod({}) is in PIP lib.".format(new_name))
             return 0
 
-        # handle people importing sub modules, like os.path or self.logger.handlers
+        # handle importing sub modules, like os.path or self.logger.handlers
         if new_name.find('.') >= 0:
             # then we have a x.y
             name = new_name.split('.')
@@ -174,13 +186,15 @@ class BuildDependencyList(object):
 
     def _add_recurse(self, path_name, dot_name):
         """
-        Assume new_name is like "network/tcp_echo/xmlrpc/" or "network/tcp_echo/ftplib.py"
+        Assume new_name is like "network/tcp_echo/xmlrpc/" or
+        "network/tcp_echo/ftplib.py"
 
         :param str path_name: the path name, like "network/tcp_echo/xmlrpc"
         :param str dot_name: the dot name, like "network.tcp_echo.xmlrpc"
         :return int: return if files were added
         """
-        # self.logger.debug("_add_recurse({0},{1})".format(path_name, dot_name))
+        # self.logger.debug(
+        #   "_add_recurse({0},{1})".format(path_name, dot_name))
 
         added_count = 0
         if os.path.isdir(path_name):
@@ -193,22 +207,26 @@ class BuildDependencyList(object):
             dir_list = os.listdir(path_name)
             for name in dir_list:
                 if name == "__pycache__":
-                    self.logger.debug("  skip known skipper ({})".format(name))
+                    self.logger.debug(
+                        "  skip known skipper ({})".format(name))
                     continue
 
                 if name == "test":
-                    self.logger.debug("  skip known skipper ({})".format(name))
+                    self.logger.debug(
+                        "  skip known skipper ({})".format(name))
                     continue
 
                 if name[0] == ".":
-                    self.logger.debug("  skip pattern skipper ({})".format(name))
+                    self.logger.debug(
+                        "  skip pattern skipper ({})".format(name))
                     continue
 
                 # still here, see if file or subdirectory
                 file_name = os.path.join(path_name, name)
                 if os.path.isdir(file_name):
                     # then another sub-directory
-                    added_count += self._add_recurse(file_name, dot_name + '.' + name)
+                    added_count += self._add_recurse(
+                        file_name, dot_name + '.' + name)
 
                 else:  # assume is a file?
                     # for example, name=client.py
@@ -216,22 +234,27 @@ class BuildDependencyList(object):
                         self.dep_list.append(file_name)
                         added_count += 1
                         try:
-                            self.logger.debug("Recurse into s-file ({})".format(file_name))
+                            self.logger.debug(
+                                "Recurse into s-file ({})".format(file_name))
                             self.add_file_dependency(file_name)
 
                         except FileNotFoundError:
-                            self.logger.error("Could NOT find above dependency within ({})".format(file_name))
+                            self.logger.error(
+                                "Could NOT find above dependency within" +
+                                "({})".format(file_name))
                             # sys.exit(EXIT_CODE_MISSING_DEP)
 
                     else:
                         # expects network.tcp_echo.xmlrpc.something.txt
                         value = path_name + os.sep + name
-                        self.logger.debug("Add file as dependency({})".format(value))
+                        self.logger.debug(
+                            "Add file as dependency({})".format(value))
                         self.dep_list.append(value)
                         added_count += 1
 
         else:
-            # might be file, like network/tcp_echo/ftplib.py as network.tcp_echo.ftplib
+            # might be file, like network/tcp_echo/ftplib.py as
+            #   network.tcp_echo.ftplib
             if not path_name.endswith(".py"):
                 path_name += ".py"
             self.logger.debug("Recurse into d-file ({})".format(path_name))

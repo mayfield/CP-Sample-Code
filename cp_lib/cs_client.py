@@ -427,6 +427,7 @@ def init_cs_client_on_my_platform(logger, sets):
         if "router_api" not in sets:
             raise KeyError("settings missing [router_api] section")
 
+        # logger.info("Sets:{}".format(sets))
         client.set_router_ip(sets["router_api"]["local_ip"])
         user = sets["router_api"].get("user_name", "admin")
         client.set_user_password(user, sets["router_api"]["password"])

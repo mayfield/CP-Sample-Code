@@ -19,7 +19,8 @@ DEF_FILE_NAME = "package.ini"
 
 def make_package_ini(sets, output_file_name):
     """
-    Assuming we have a 'standard' settings file as dict, create the ECM-expected file.
+    Assuming we have a 'standard' settings file as dict, create the
+    ECM-expected file.
 
     :param dict sets:
     :param str output_file_name:

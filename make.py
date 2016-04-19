@@ -213,8 +213,7 @@ class TheMaker(CradlepointAppBase):
 
         elif self.action == "ping":
             # delete temp build files
-            ping_ip = "192.168.115.6"
-            return self.action_ping(ping_ip)
+            return self.action_ping(self.app_path)
 
         else:
             raise ValueError("Unsupported Command:" + self.action)
@@ -277,7 +276,9 @@ class TheMaker(CradlepointAppBase):
         # fussy neatness - force Linux to propagate to - ["path"]
         self.attrib["path"] = app_name_parse.normalize_path_separator(
             self.attrib["path"], self.DEF_SEP)
+
         if self.action in self.ACTION_CALL_TO_ROUTER:
+            self.logger.info("sets:{}".format(self.settings))
             # then check for Model & firmware
             save_value = self.cs_client.show_rsp
             self.cs_client.show_rsp = False

@@ -1,5 +1,5 @@
 """
-Probe the GPS hardware, return a report as both list of text, and actual ASCII file
+Probe the GPS hardware, return a report as list of text, and actual ASCII file
 """
 import json
 import sys
@@ -13,12 +13,13 @@ def probe_gps(app_base, save_file=None):
     """
     The main GPS task.
 
-    :param CradlepointAppBase app_base: the prepared resources: logger, cs_client, settings, etc
+    :param CradlepointAppBase app_base: prepared resources: logger, cs_client
     :param str save_file: If a name, then save as text file
     :return int:
     """
 
-    message = "Probing GPS HW - {}".format(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
+    message = "Probing GPS HW - {}".format(time.strftime("%Y-%m-%d %H:%M:%S",
+                                                         time.localtime()))
     app_base.logger.info(message)
     report_lines = [message]
 
@@ -42,8 +43,10 @@ def probe_gps(app_base, save_file=None):
 
     else:
         # FW 6.1 example of get("config/system/gps")
-        # {'connections': [], 'taip_vehicle_id': '0000', 'enabled': True, 'enable_gps_keepalive': True,
-        #  'enable_gps_led': True, 'debug': {'log_nmea_to_fs': False, 'flags': 0}, 'pwd_enabled': False}
+        # {'connections': [], 'taip_vehicle_id': '0000', 'enabled': True,
+        #  'enable_gps_keepalive': True, 'enable_gps_led': True,
+        #  'debug': {'log_nmea_to_fs': False, 'flags': 0},
+        #            'pwd_enabled': False}
         gps_enabled = result.get("enabled", False)
         if gps_enabled:
             message = "GPS Function is Enabled"
@@ -83,15 +86,18 @@ def probe_gps(app_base, save_file=None):
                     value = result[key]["status"]["gps"]
                     if value is not None and len(value) > 0:
                         # for example, active w/GPS will be like
-                        message = "Modem named \"{0}\" has GPS data".format(key)
+                        message = "Modem named \"{0}\" has GPS data".format(
+                            key)
                         gps_sources.append(key)
                     else:
                         # for example, inactive w/o GPS will be only {}
-                        message = "Modem named \"{0}\" lacks GPS data".format(key)
+                        message = "Modem named \"{0}\" lacks GPS data".format(
+                            key)
                     report_lines.append(message)
                     app_base.logger.info(message)
             except KeyError:
-                # for example, the WAN device 'ethernet-wan' will LACK the key ["info"]["supports_gps"]
+                # for example, the WAN device 'ethernet-wan' will LACK
+                # the key ["info"]["supports_gps"]
                 # logger.debug("Key:{} does NOT support GPS".format(key))
                 pass
 
@@ -100,21 +106,26 @@ def probe_gps(app_base, save_file=None):
         elif len(gps_sources) == 1:
             message = "Router has 1 modem claiming to have GPS data"
         else:
-            message = "Router has {0} modems claiming to have GPS data".format(len(gps_sources))
+            message = "Router has {0} modems claiming GPS data".format(
+                len(gps_sources))
         report_lines.append(message)
         app_base.logger.info(message)
 
         # {'fix': {
         #     'age': 57.38595999999962,
         #     'lock': True,
-        #     'longitude': {'second': 5.596799850463867, 'minute': 20, 'degree': -93},
+        #     'longitude': {'second': 5.596799850463867, 'minute': 20,
+        #                   'degree': -93},
         #     'time': 204521,
         #     'satellites': 6,
-        #     'latitude': {'second': 49.17959976196289, 'minute': 0, 'degree': 45}
+        #     'latitude': {'second': 49.17959976196289, 'minute': 0,
+        #                  'degree': 45}
         # },
         # 'nmea': {
-        #     'GPGGA': '$GPGGA,204521.0,4500.819660,N,09320.093314,W,1,06,0.8,286.2,M,-33.0,M,,*66\r\n',
-        #     'GPRMC': '$GPRMC,204521.0,A,4500.819660,N,09320.093314,W,0.0,264.6,140316,0.0,E,A*15\r\n',
+        #     'GPGGA': '$GPGGA,204521.0,4500.819660,N,09320.093314,W,1,06,
+        #               0.8,286.2,M,-33.0,M,,*66\r\n',
+        #     'GPRMC': '$GPRMC,204521.0,A,4500.819660,N,09320.093314,W,0.0,
+        #               264.6,140316,0.0,E,A*15\r\n',
         #     'GPVTG': '$GPVTG,264.6,T,264.6,M,0.0,N,0.0,K,A*23\r\n'}
         # }
 
@@ -134,7 +145,8 @@ def probe_gps(app_base, save_file=None):
             # if am_running_on_router():
             if sys.platform != "win32":
                 pass
-                # app_base.logger.error("Skip save to file - am running on router.")
+                # app_base.logger.error(
+                #     Skip save to file - am running on router.")
             else:
                 app_base.logger.debug("Save file:{}".format(save_file))
                 file_han = open(save_file, "w")

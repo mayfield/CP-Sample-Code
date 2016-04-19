@@ -13,15 +13,16 @@ DEF_PORT_NAME = "/dev/ttyS1"
 def run_main(app_base):
     """
 
-    :param CradlepointAppBase app_base: the prepared resources: logger, cs_client, settings, etc
+    :param CradlepointAppBase app_base: prepared resources: logger, cs_client
     :return list:
     """
-    # confirm we are running on an 1100/1150, result should be like "IBR1100LPE"
+    # confirm we are running on an 1100/1150, result should be "IBR1100LPE"
     result = app_base.get_product_name()
     if result in ("IBR1100", "IBR1150"):
         app_base.logger.info("Product Model is good:{}".format(result))
     else:
-        app_base.logger.error("Inappropriate Product:{} - aborting.".format(result))
+        app_base.logger.error(
+            "Inappropriate Product:{} - aborting.".format(result))
         return -1
 
     port_name = DEF_PORT_NAME
@@ -32,11 +33,12 @@ def run_main(app_base):
         if "baud_rate" in app_base.settings["serial_echo"]:
             baud_rate = int(app_base.settings["serial_echo"]["baud_rate"])
 
-    message = "Starting serial echo on {0}, baud={1}".format(port_name, baud_rate)
+    message = "Starting serial echo on {0}, baud={1}".format(port_name,
+                                                             baud_rate)
     app_base.logger.info(message)
 
-    ser = serial.Serial(port_name, baudrate=baud_rate, bytesize=8, parity='N', stopbits=1,
-                        timeout=1, xonxoff=0, rtscts=0)
+    ser = serial.Serial(port_name, baudrate=baud_rate, bytesize=8, parity='N',
+                        stopbits=1, timeout=1, xonxoff=0, rtscts=0)
 
     # start as None to force at least 1 change
     dsr_was = None
@@ -53,12 +55,14 @@ def run_main(app_base):
 
             if dsr_was != ser.dsr:
                 dsr_was = ser.dsr
-                app_base.logger.info("DSR changed to {}, setting DTR".format(dsr_was))
+                app_base.logger.info(
+                    "DSR changed to {}, setting DTR".format(dsr_was))
                 ser.dtr = dsr_was
 
             if cts_was != ser.cts:
                 cts_was = ser.cts
-                app_base.logger.info("CTS changed to {}, setting RTS".format(cts_was))
+                app_base.logger.info(
+                    "CTS changed to {}, setting RTS".format(cts_was))
                 ser.rts = cts_was
 
     finally:

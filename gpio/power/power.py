@@ -11,7 +11,7 @@ DEF_OUTPUT_NAME = "status/gpio/CGPIO_CONNECTOR_OUTPUT"
 DEF_LOOP_DELAY = 15
 
 
-def read_connector(app_base, loop=True):
+def run_router_app(app_base, loop=True):
     """
 
     :param CradlepointAppBase app_base: the prepared resources: logger,
@@ -83,8 +83,6 @@ if __name__ == "__main__":
 
     my_app = CradlepointAppBase("gpio/power")
 
-    _result = read_connector(my_app, loop=False)
-
+    _result = run_router_app(my_app, loop=False)
     my_app.logger.info("Exiting, status code is {}".format(_result))
-
     sys.exit(_result)

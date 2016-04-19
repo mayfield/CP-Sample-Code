@@ -15,7 +15,8 @@ HOST = "0.0.0.0"
 PORT = 514
 
 
-logging.basicConfig(level=logging.DEBUG, format='%(message)s', datefmt='', filename=LOG_FILE, filemode='w')
+logging.basicConfig(level=logging.DEBUG, format='%(message)s', datefmt='',
+                    filename=LOG_FILE, filemode='w')
 
 
 class SyslogUDPHandler(socketserver.BaseRequestHandler):
@@ -26,8 +27,8 @@ class SyslogUDPHandler(socketserver.BaseRequestHandler):
 
         if data[4] > 0x80:
             # handle CP's weird Syslog payload
-            # [39]3C31353EEFBBBF65636D3A2052656D6F746520636F646520657865632074726967676572656400
-            # 192.168.1.1 :  b'<15>\xef\xbb\xbfecm: Remote code exec triggered\x00'
+            # [39]3C31353EEFBBBF65636D3A2052656D6F746520636F6465206578656400
+            # 192.168.1.1 :  b'<15>\xef\xbb\xbfecm: Remote code exec tri\x00'
             data = data[:4] + b" ? " + data[7:]
         # msg = ""
         # for by in data:
@@ -43,10 +44,10 @@ class SyslogUDPHandler(socketserver.BaseRequestHandler):
             # <15>WAN:1f0e98e7: Modem:gps: {'fix': {'latitude': {'second': ...
             "Modem:gps",
 
-            # <14>cp_stack_mgr: INFO  lte_sierra.c(6107) int1: lte_sierra_gps_ ...
+            # <14>cp_stack_mgr: INFO  lte_sierra.c(6107) int1: lte_sierra_...
             "cp_stack_mgr",
 
-            # <12>dnsmasq-dhcp[410]: no address range available for DHCPv6 request via primarylan1
+            # <12>dnsmasq-dhcp[410]: no address range available for DHCPv6 an1
             "address range available for DHCPv6 request",
 
             # <15>gps.ploop: is the GPS keep-alive - the "Poll Loop"
@@ -59,13 +60,15 @@ class SyslogUDPHandler(socketserver.BaseRequestHandler):
             # 192.168.30.1 :  <15>wlan: Wireless survey completed (radio 0)
             "ireless survey",
 
-            # 192.168.30.1 :  <15>wwan2: WifiWanService.wwan, all requested scans have been done: nets : []
+            # 192.168.30.1 :  <15>wwan2: WifiWanService.wwan, all requested
+            #                     scans have been done: nets : []
             "WifiWanService.wwan",
 
-            # 192.168.30.1 :  <15>wwan2: we're calling plug_profiles for radio 0
+            # 192.168.30.1 :  <15>wwan2: we're calling plug_profiles for radio
             "calling plug_profiles",
 
-            # 192.168.35.1 :  <15>WAN:43988388.PassiveDns: ipv6_out bytes : 152 pkts : 2 iface out : 25853
+            # 192.168.35.1 :  <15>WAN:43988388.PassiveDns: ipv6_out bytes :
+            #                     152 pkts : 2 iface out : 25853
             "PassiveDns",
 
         ]

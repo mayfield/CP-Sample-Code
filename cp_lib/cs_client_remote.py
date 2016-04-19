@@ -65,9 +65,9 @@ class CradlepointClientRemote(CradlepointClient):
         self.router_ip = router_ip
         self.base_url = "http://{}/api".format(self.router_ip)
 
-        # if self._logger is not None:
-        #     self._logger.debug("CSClient() set router IP, url={}".format(
-        #        self.base_url))
+        if self._logger is not None:
+            self._logger.debug("CSClient() set router IP, url={}".format(
+                self.base_url))
         return
 
     def set_user_password(self, user_name, password):

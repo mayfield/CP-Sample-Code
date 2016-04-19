@@ -1,13 +1,16 @@
 """
-Fancier, "Load settings", including converting a "settings.ini" into settings.json
+Fancier, "Load settings", including converting a "settings.ini" into
+settings.json
 
 The Router SDK Sample design is the following:
-1) confirm ./{project}/settings.ini exists, and there is an [application] section
-2) if ./{project}/settings.ini, [application] section lacks "uuid", add random one
-3) if ./{project}/settings.ini, [application] section lacks "version", add "1.0"
-4) if make has '-i' option, the open ./{project}/settings.ini and increment "version" minor value
+1) confirm ./{project}/settings.ini exists, and there is [application] section
+2) if ./{project}/settings.ini, [application] section lacks "uuid", add one
+3) if ./{project}/settings.ini, [application] section lacks "version", add 1.0
+4) if make has '-i' option, the open ./{project}/settings.ini and increment
+                                "version" minor value
 5) look for ./config/settings.ini, if found read this in
-6) look for ./{project}/settings.ini, read this in, smartly over-laying sections from ./config
+6) look for ./{project}/settings.ini, read this in, smartly over-laying
+                                sections from ./config
 7) return the final settings as python dictionary (not saved!)
 """
 import logging
@@ -16,7 +19,8 @@ import os.path
 import shutil
 
 from cp_lib.load_settings_ini import DEF_SETTINGS_FILE_NAME, DEF_INI_EXT, \
-    load_sdk_ini_as_dict, SECTION_APPLICATION, SECTION_LOGGING, SECTION_ROUTER_API
+    load_sdk_ini_as_dict, SECTION_APPLICATION, SECTION_LOGGING, \
+    SECTION_ROUTER_API
 
 DEF_SAVE_EXT = ".save"
 
@@ -29,10 +33,11 @@ def validate_project_settings(app_dir_path, increment_version=False):
     2) confirm it has an [application] section, else throw exception
     3) confirm [application] section has "uuid", add random one if not
     4) confirm [application] section has "version", add "1.0" if not
-    5) if increment_version is True, then increment MINOR value of a pre-existing version
+    5) if increment_version is True, then increment MINOR value of a
+        pre-existing version
 
     :param str app_dir_path: the subdirectory path to the settings.ini file
-    :param bool increment_version: if True, then increment MINOR value from version
+    :param bool increment_version: if True, increment MINOR value from version
     :return None:
     """
 
@@ -42,7 +47,8 @@ def validate_project_settings(app_dir_path, increment_version=False):
         raise FileNotFoundError("SDK app directory not found.")
 
     # 2) confirm it has an [application] section, else throw exception
-    file_name = os.path.join(app_dir_path, DEF_SETTINGS_FILE_NAME + DEF_INI_EXT)
+    file_name = os.path.join(app_dir_path, DEF_SETTINGS_FILE_NAME +
+                             DEF_INI_EXT)
     logging.debug("Confirm {} has [application] section".format(file_name))
     if not _confirm_has_application_section(file_name):
         raise KeyError("SDK app settings.ini requires [application] section")
@@ -52,7 +58,8 @@ def validate_project_settings(app_dir_path, increment_version=False):
     fix_up_uuid(file_name)
 
     # 4) confirm [application] section has "version", add "1.0" if not
-    # 5) if increment_version is True, then increment MINOR value of a pre-existing version
+    # 5) if increment_version is True, then increment MINOR value of a
+    #       pre-existing version
     logging.debug("Confirm {} has 'version' value".format(file_name))
     increment_app_version(file_name, increment_version)
 
@@ -62,8 +69,10 @@ def validate_project_settings(app_dir_path, increment_version=False):
 def load_settings(app_dir_path=None, file_name=None):
     """
 
-    :param str app_dir_path: relative directory path to the app directory (ignored if None)
-    :param str file_name: pass in alternative name - mainly for testing, else use DEF_FILE_NAME
+    :param str app_dir_path: relative directory path to the app directory
+                             (ignored if None)
+    :param str file_name: pass in alternative name - mainly for testing,
+                          else use DEF_FILE_NAME
     :return dict: the settings as Python dictionary
     """
     if file_name is None:
@@ -108,8 +117,9 @@ def _special_section_logging(sets):
 def _special_section_router_api(sets):
     """Handle any special processing for the [router_api] INI section"""
 
-    # if we have password, but no USER, then assume user is Cradlepoint default of "admin"
-    if "password" in sets[SECTION_ROUTER_API] and "user_name" not in sets[SECTION_ROUTER_API]:
+    # if we have password, but no USER, then assume user is default of "admin"
+    if "password" in sets[SECTION_ROUTER_API] and \
+            "user_name" not in sets[SECTION_ROUTER_API]:
         sets[SECTION_ROUTER_API]["user_name"] = "admin"
 
     return sets
@@ -117,8 +127,9 @@ def _special_section_router_api(sets):
 
 def _confirm_has_application_section(ini_name):
     """
-    Run through the text file, confirm it has [application] section. Although we desire ONLY
-    [application], we allow INI to have [Application] or any case-mix
+    Run through the text file, confirm it has [application] section.
+    Although we desire ONLY [application], we allow INI to have
+    [Application] or any case-mix
 
     Throw FileNotFoundError is the file doesn't exist!
 
@@ -126,7 +137,8 @@ def _confirm_has_application_section(ini_name):
     :return bool: T if [application] was found, else F
     """
     if not os.path.isfile(ini_name):
-        raise FileNotFoundError("Project INI file missing:{}".format(ini_name))
+        raise FileNotFoundError(
+            "Project INI file missing:{}".format(ini_name))
 
     # logging.debug("_confirm_has_application_section({})".format(ini_name))
 
@@ -144,7 +156,9 @@ def _confirm_has_application_section(ini_name):
 
 def _line_find_section(line, name):
     """
-    Given a line from file, confirm if this line is like [section], ignoring case
+    Given a line from file, confirm if this line is like [section],
+    ignoring case
+
     :param line name: the source line
     :param str name: the section name desired
     :return bool:
@@ -237,7 +251,8 @@ def increment_app_version(ini_name, incr_version=False, backup=False):
             major, minor = split_version_string(value)
             minor += 1
             version = "%d.%d" % (major, minor)
-            logging.debug("Fix Version - increment from {} to {}".format(value, version))
+            logging.debug(
+                "Fix Version - increment from {} to {}".format(value, version))
 
         else:
             # logging.debug("Fix Version - use old line({})".format(old_line))
@@ -258,8 +273,8 @@ def increment_app_version(ini_name, incr_version=False, backup=False):
 
 def _find_item_in_app_section(ini_name, set_name, process, backup=False):
     """
-    Scan INI file for [application] section, seek either the requested item, or end of the
-    app section, call 'process' to explain what to do
+    Scan INI file for [application] section, seek either the requested item,
+    or end of the app section, call 'process' to explain what to do
 
     :param str ini_name: the INI file name (assume exists at this point)
     :param str set_name:
@@ -286,18 +301,21 @@ def _find_item_in_app_section(ini_name, set_name, process, backup=False):
                 state = state_in_app
 
         elif state == state_in_app:
-            # we have seen the [application] section, so seek 'set_name' or end of section
+            # we have seen the [application] section, so seek 'set_name'
+            #   or end of section
             clean_line = line.strip()
             if len(clean_line) < 1:
                 result = process(None)
-                # logging.debug("Hit end of section, add line ({})".format(result.strip()))
+                # logging.debug(
+                #   "Hit end of section, add line ({})".format(result.strip()))
                 lines.append(result)
                 state = state_past
                 # continue down & append the blank line
 
             elif clean_line.startswith(set_name):
                 result = process(clean_line)
-                # logging.debug("Found {}, add line ({})".format(set_name, result.strip()))
+                # logging.debug(
+                #   "Found {}, add line ({})".format(set_name, result.strip()))
                 lines.append(result)
                 state = state_past
                 continue  # loop up, no append of old data
@@ -307,7 +325,8 @@ def _find_item_in_app_section(ini_name, set_name, process, backup=False):
 
         lines.append(line)
 
-    # handle if we hit EOF before blank line - if not, we should be in state 'state_past'
+    # handle if we hit EOF before blank line - if not, we should be in
+    #   state 'state_past'
     if state == state_in_app:
         result = process(None)
         # logging.debug("Hit end of file, add line ({})".format(result))

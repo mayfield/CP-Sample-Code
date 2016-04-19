@@ -3,12 +3,12 @@ A custom pretty-print to dump protocol buffers for use with Syslog.
 
 The form will be like, where ofs = the offset in the total buffer:
 [ofs] 00 11 22 33 44 55 66 77 88 99 AA BB CC DD EE FF [0123456789ABCDEF]
-00000000000000001111111111111111222222222222222233333333333333334444444444444444
-0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF
+00000000000000001111111111111111222222222222222233333333333333334444444444444
+0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABC
 
-[ofs] 00 11 22 33 44 55 66 77 88 99 AA BB CC DD EE FF 00 11 22 33 [0123456789ABCDEF0123]
-000000000000000011111111111111112222222222222222333333333333333344444444444444445555555555555555
-0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF
+[ofs] 00 11 22 33 44 55 66 77 88 99 AA BB CC DD EE FF 00 11 22 33 [0123456789
+00000000000000001111111111111111222222222222222233333333333333334444444444444
+0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABC
 
 As shown above, chunks with a width of 16 are 48 bytes wide, and 20 is 58
 """
@@ -58,8 +58,9 @@ def buffer_dump(message, data, show_ascii=False):
                 message.append("%02X" % ord(x))
 
             if show_ascii:
-                # only attach if we think is nearly ascii, else skip (for example, binary Modbus
-                # will not show in a meaningful way. string will show like \'Apple\n\'
+                # only attach if we think is nearly ascii, else skip
+                # (for example, binary Modbus will not show in a
+                # meaningful way. string will show like \'Apple\n\'
                 message.append("%s" % repr(chunk))
 
         else:
@@ -68,8 +69,6 @@ def buffer_dump(message, data, show_ascii=False):
                 message.append("%02X" % int(x))
 
             if show_ascii:
-                # only attach if we think is nearly ascii, else skip (for example, binary Modbus
-                # will not show in a meaningful way. bytes will show like b\'Apple\n\'
                 message.append("b%s" % repr(chunk.decode('utf8')))
 
         lines.append(" ".join(message))

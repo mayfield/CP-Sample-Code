@@ -49,7 +49,8 @@ def do_list_ports(my_logger, my_settings):
                 print("Port({}) didn't exist.".format(name))
 
     else:
-        raise NotImplementedError("This sample only runs on CP Router or Windows")
+        raise NotImplementedError(
+            "This sample only runs on CP Router or Windows")
 
     return
 
@@ -64,8 +65,9 @@ if __name__ == "__main__":
     formatter = logging.Formatter("%(levelname)s:%(name)s:%(message)s")
 
     # handler = logging.handlers.SysLogHandler(address="/dev/log",
-    handler = logging.handlers.SysLogHandler(address=("192.168.1.6", 514),
-                                             facility=logging.handlers.SysLogHandler.LOG_LOCAL6)
+    handler = logging.handlers.SysLogHandler(
+        address=("192.168.1.6", 514),
+        facility=logging.handlers.SysLogHandler.LOG_LOCAL6)
     handler.setLevel(logging.DEBUG)
     handler.setFormatter(formatter)
     logger.addHandler(handler)

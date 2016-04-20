@@ -65,7 +65,6 @@ class MainStartUp(object):
         app_mod = importlib.import_module(app_main)
         app_base = app_mod.RouterApp(app_main)
 
-
         if True:
             # app_mod = importlib.import_module(app_main, "RouterApp")
             # app_mod = importlib.import_module("network.tcp_echo.tcp_echo")

@@ -2,12 +2,13 @@
 Send a single email
 """
 from cp_lib.app_base import CradlepointAppBase
+from cp_lib.cp_email import cp_send_email
 
 
 def send_one_email(app_base):
     """
 
-    :param CradlepointAppBase app_base: the prepared resources: logger, cs_client, settings, etc
+    :param CradlepointAppBase app_base: prepared resources: logger, cs_client
     :return:
     """
     # logger.debug("Settings({})".format(sets))
@@ -17,52 +18,45 @@ def send_one_email(app_base):
 
     local_settings = dict()
     # we default to GMAIL, assume this is for testing
-    local_settings['smtp_url'] = app_base.settings["send_email"].get("smtp_url", 'smtp.gmail.com')
-    local_settings['smtp_port'] = int(app_base.settings["send_email"].get("smtp_port", 587))
+    local_settings['smtp_url'] = app_base.settings["send_email"].get(
+        "smtp_url", 'smtp.gmail.com')
+    local_settings['smtp_port'] = int(app_base.settings["send_email"].get(
+        "smtp_port", 587))
 
     for value in ('username', 'password', 'email_to', 'email_from'):
         if value not in app_base.settings["send_email"]:
-            raise ValueError("settings [send_email] section requires {} value".format(value))
+            raise ValueError(
+                "settings [send_email] section requires {} data".format(value))
         # assume all are 'strings' - no need for INT
         local_settings[value] = app_base.settings["send_email"][value]
 
-    subject = app_base.settings["send_email"].get("subject", "test-Subject")
-    body = app_base.settings["send_email"].get("body", "test-body")
+    local_settings['subject'] = app_base.settings["send_email"].get(
+        "subject", "test-Subject")
+    local_settings['body'] = app_base.settings["send_email"].get(
+        "body", "test-body")
 
-    app_base.logger.debug("Send Email To:({})".format(local_settings['email_to']))
-    result = _do_send_email(local_settings, subject, body)
+    app_base.logger.debug("Send Email To:({})".format(
+        local_settings['email_to']))
+    result = cp_send_email(local_settings)
 
     app_base.logger.debug("result({})".format(result))
 
     return result
 
+# Required keys
+# ['smtp_tls]   = T/F to use TLS, defaults to True
+# ['smtp_url']  = URL, such as 'smtp.gmail.com'
+# ['smtp_port'] = TCP port like 587 - be careful, as some servers have more
+#                 than one, with the number defining the security demanded.
+# ['username']  = your smtp user name (often your email acct address)
+# ['password']  = your smtp acct password
+# ['email_to']  = the target email address, as str or list
+# ['subject']   = the email subject
 
-def _do_send_email(sets, subject, body):
-    """
-
-    :param dict sets: the various settings
-    :param str subject: the subject line text
-    :param str body: the body text
-    :return:
-    """
-    import smtplib
-
-    email = smtplib.SMTP(sets['smtp_url'], sets['smtp_port'])
-    email.ehlo()
-    email.starttls()
-    email.login(sets['username'], sets['password'])
-
-    email_body = '\r\n'.join(['TO: %s' % sets['email_to'], 'FROM: %s' % sets['email_from'],
-                              'SUBJECT: %s' % subject, '', body])
-
-    # try:
-    email.sendmail(sets['email_from'], [sets['email_to']], email_body)
-
-    # except:
-    #     logging.error("Email send failed!")
-
-    email.quit()
-    return 0
+# Optional keys
+# ['email_from'] = the from address - any smtp server will ignore, and force
+#                  this to be your user/acct email address; def = ['username']
+# ['body']       = the email body; def = ['subject']
 
 
 if __name__ == "__main__":

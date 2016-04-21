@@ -4,7 +4,7 @@ import time
 from cp_lib.app_base import CradlepointAppBase
 from cp_lib.cp_email import cp_send_email
 from cp_lib.parse_duration import TimeDuration
-from cp_lib.parse_data import parse_boolean
+from cp_lib.parse_data import parse_boolean, parse_none
 
 power_loss_task = None
 
@@ -118,6 +118,17 @@ class PowerLoss(threading.Thread):
         # support 'true', '1' etc - but finally is True/False
         self.state_in_alarm = parse_boolean(self.state_in_alarm)
 
+        # when 'power is lost', send to LED
+        self.led_in_alarm = self.app_base.settings["power_loss"].get(
+            "led_on_power_loss", None)
+        try:
+            # see if the setting is None, to disable
+            self.led_in_alarm = parse_none(self.led_in_alarm)
+
+        except ValueError:
+            # support 'true', '1' etc - but finally is True/False
+            self.led_in_alarm = parse_boolean(self.led_in_alarm)
+
         # when GPIO matches this state, then power is lost
         self.site_name = self.app_base.settings["power_loss"].get(
             "site_name", "My Site")
@@ -129,7 +140,11 @@ class PowerLoss(threading.Thread):
         self.keep_running = threading.Event()
         self.keep_running.set()
 
+        # hold the .get_power_loss_status()
         self.last_state = None
+
+        # special tweak to announce 'first poll' more smartly
+        self.starting_up = True
 
         self.email_settings = dict()
         self.prep_email_settings()
@@ -151,8 +166,9 @@ class PowerLoss(threading.Thread):
             result = self.get_power_loss_status()
             if result == self.last_state:
                 # then no change
-                self.app_base.logger.debug(
-                    "State has not changed, still={}".format(result))
+                pass
+                # self.app_base.logger.debug(
+                #     "State has not changed, still={}".format(result))
 
             elif result is None:
                 # handle hiccups? Try again?
@@ -161,7 +177,7 @@ class PowerLoss(threading.Thread):
             else:
                 # else state has been changed
                 self.last_state = result
-                if self.power_is_lost(self.last_state):
+                if self.last_state:
                     # changed state = True, power has been LOST
                     self.app_base.logger.debug(
                         "State changed={}, POWER LOST!".format(
@@ -173,7 +189,7 @@ class PowerLoss(threading.Thread):
                             self.loss_delay))
                     time.sleep(self.loss_delay)
                     result = self.get_power_loss_status()
-                    if self.power_is_lost(result):
+                    if result:
                         # then power really is lost
                         self.do_power_lost_event()
                     else:
@@ -192,14 +208,12 @@ class PowerLoss(threading.Thread):
                             self.restore_delay))
                     time.sleep(self.restore_delay)
                     result = self.get_power_loss_status()
-                    if not self.power_is_lost(result):
+                    if not result:
                         # then power really is restored
                         self.do_power_restore_event()
                     else:
                         self.last_state = result
                         self.app_base.logger.debug("False Alarm")
-
-                # self.app_base.logger.info(self.show_state(self.last_state))
 
             time.sleep(self.loop_delay)
 
@@ -230,6 +244,9 @@ class PowerLoss(threading.Thread):
             # ?? what if we hiccup & have a bad reading?
             return None
 
+        # self.app_base.logger.debug("result:{} alarm:{} is_lost:{}".format(
+        #     result, self.state_in_alarm, self.power_is_lost(result)))
+
         return self.power_is_lost(result)
 
     def do_power_lost_event(self):
@@ -237,18 +254,45 @@ class PowerLoss(threading.Thread):
         Do what we need to when power is lost
         :return:
         """
-        message =\
-            "Bad News! AC Power lost at site: {}".format(self.site_name)
-        return self._do_event(message, alarm=True)
+        if self.starting_up:
+            # special tweak to announce 'first poll' more smartly
+            self.starting_up = False
+            message =\
+                "Starting Up: AC Power OFF at site: {}".format(self.site_name)
+        else:
+            message =\
+                "Bad News! AC Power lost at site: {}".format(self.site_name)
+        self._do_event(message, alarm=True)
+
+        if self.led_in_alarm is not None:
+            # then affect LED output, since in alarm, set to led_in_alarm
+            self.app_base.cs_client.put(
+                "control/gpio",
+                {"CGPIO_CONNECTOR_OUTPUT": int(self.led_in_alarm)})
+        return
 
     def do_power_restore_event(self):
         """
         Do what we need to when power is restored
         :return:
         """
-        message =\
-            "Good News! AC Power restored at site: {}".format(self.site_name)
-        return self._do_event(message, alarm=False)
+        if self.starting_up:
+            # special tweak to announce 'first poll' more smartly
+            self.starting_up = False
+            message =\
+                "Starting Up: AC Power ON at site: {}".format(self.site_name)
+        else:
+            message =\
+                "Good News! AC Power restored at site: {}".format(
+                    self.site_name)
+        self._do_event(message, alarm=False)
+
+        if self.led_in_alarm is not None:
+            # affect LED output, since not in alarm, set to NOT led_in_alarm
+            self.app_base.cs_client.put(
+                "control/gpio",
+                {"CGPIO_CONNECTOR_OUTPUT": int(not self.led_in_alarm)})
+        return
 
     def _do_event(self, message, alarm):
         """
@@ -287,7 +331,7 @@ class PowerLoss(threading.Thread):
             now = time.time()
 
         return "  at time: {}".format(
-            time.strftime("%Y-%m-%d %H:%M:%S %Z", time.localtime(now)))
+            time.strftime("%Y-%m-%d %H:%M:%S %z", time.localtime(now)))
 
     def power_is_lost(self, value):
         """
@@ -296,17 +340,6 @@ class PowerLoss(threading.Thread):
         :return:
         """
         return bool(value == self.state_in_alarm)
-
-    def show_state(self, value):
-        """
-        Given current state, form the string
-        :param value:
-        :return:
-        """
-        if self.power_is_lost(value):
-            return "AC Power has been lost (True)"
-        else:
-            return "AC Power is okay (False)"
 
     def prep_email_settings(self):
         """
